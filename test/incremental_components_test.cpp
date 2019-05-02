@@ -45,7 +45,7 @@ void test_graph(const Graph& graph) {
   RankMap rank_map;
   RankPropertyMap rank_property_map(rank_map);
 
-  ParentMap parent_map(num_vertices(graph));  
+  ParentMap parent_map(num_vertices(graph));
   IndexParentMap index_parent_map(parent_map.begin());
 
   // Create disjoint sets of vertices from the graph
@@ -80,7 +80,7 @@ void test_graph(const Graph& graph) {
 
       vertex_descriptor child_vertex = reverse_index_map[child_index];
       component_vertices.insert(child_vertex);
-      
+
     } // foreach child_index
 
     // Verify that children are connected to each other in some
@@ -155,7 +155,7 @@ int test_main(int argc, char* argv[])
     put(get(boost::vertex_index, list_graph), vertex, index++);
   }
 
-  test_graph(list_graph); 
+  test_graph(list_graph);
 
   return 0;
 

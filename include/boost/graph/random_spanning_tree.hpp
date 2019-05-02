@@ -99,12 +99,12 @@ namespace boost {
     vertex_descriptor default_vertex = *vertices(g).first;
     vertex_descriptor start_vertex = arg_pack[_root_vertex | default_vertex];
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::predecessor_map
     >::type pred_map = arg_pack[_predecessor_map];
     static_property_map<double> default_weight_map(1.);
     typename boost::parameter::value_type<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::weight_map,
         static_property_map<double>
     >::type e_w_map = arg_pack[_weight_map | default_weight_map];

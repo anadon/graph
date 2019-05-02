@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -61,7 +61,7 @@ main(int argc, const char** argv)
   for (std::size_t i = 0; i < n_vertices; ++i)
     id2vertex.push_back(add_vertex(g));
   std::pair<size_type, size_type> p;
-  while (file_in >> p) 
+  while (file_in >> p)
     add_edge(id2vertex[p.first], id2vertex[p.second], g);
 #else
   std::istream_iterator<std::pair<size_type, size_type> >

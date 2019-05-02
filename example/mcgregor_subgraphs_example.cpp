@@ -40,7 +40,7 @@ struct example_callback {
     // Fill membership map for first graph
     typedef typename property_map<Graph, vertex_index_t>::type VertexIndexMap;
     typedef shared_array_property_map<bool, VertexIndexMap> MembershipMap;
-      
+
     MembershipMap membership_map1(num_vertices(m_graph1),
                                   get(vertex_index, m_graph1));
 
@@ -117,28 +117,28 @@ int main (int argc, char *argv[]) {
   std::cout << "mcgregor_common_subgraphs:" << std::endl;
   mcgregor_common_subgraphs
     (graph_simple1, graph_simple2, true, user_callback,
-     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
   std::cout << std::endl;
 
   // Unique subgraphs
   std::cout << "mcgregor_common_subgraphs_unique:" << std::endl;
   mcgregor_common_subgraphs_unique
     (graph_simple1, graph_simple2, true, user_callback,
-     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
   std::cout << std::endl;
 
   // Maximum subgraphs
   std::cout << "mcgregor_common_subgraphs_maximum:" << std::endl;
   mcgregor_common_subgraphs_maximum
     (graph_simple1, graph_simple2, true, user_callback,
-     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
   std::cout << std::endl;
 
   // Maximum, unique subgraphs
   std::cout << "mcgregor_common_subgraphs_maximum_unique:" << std::endl;
   mcgregor_common_subgraphs_maximum_unique
     (graph_simple1, graph_simple2, true, user_callback,
-     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+     vertices_equivalent(make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
 
   return 0;
 }

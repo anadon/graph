@@ -69,7 +69,7 @@ void test_K_5(VertexIndexUpdater vertex_index)
   BOOST_CHECK(boyer_myrvold_planarity_test(g));
   add_edge(v3, v5, g);
   BOOST_CHECK(boyer_myrvold_planarity_test(g));
-  
+
   //This edge should make the graph non-planar
   add_edge(v4, v5, g);
   BOOST_CHECK(!boyer_myrvold_planarity_test(g));
@@ -111,7 +111,7 @@ void test_K_3_3(VertexIndexUpdater vertex_index)
   BOOST_CHECK(boyer_myrvold_planarity_test(g));
   add_edge(v3, v5, g);
   BOOST_CHECK(boyer_myrvold_planarity_test(g));
-  
+
   //This edge should make the graph non-planar
   add_edge(v3, v6, g);
   BOOST_CHECK(!boyer_myrvold_planarity_test(g));
@@ -164,7 +164,7 @@ void test_maximal_planar(VertexIndexUpdater vertex_index, std::size_t num_vertic
   if (num_vertices > 4)
     {
       add_edge(vmap[2], vmap[4], g);
-      BOOST_CHECK(!boyer_myrvold_planarity_test(g));      
+      BOOST_CHECK(!boyer_myrvold_planarity_test(g));
     }
 
 }
@@ -175,44 +175,44 @@ void test_maximal_planar(VertexIndexUpdater vertex_index, std::size_t num_vertic
 
 int test_main(int, char* [])
 {
-  typedef adjacency_list 
-    <vecS, 
-    vecS, 
+  typedef adjacency_list
+    <vecS,
+    vecS,
     undirectedS,
     property<vertex_index_t, int>
-    > 
+    >
     VVgraph_t;
-  
-  typedef adjacency_list 
-    <vecS, 
-    listS, 
+
+  typedef adjacency_list
+    <vecS,
+    listS,
     undirectedS,
     property<vertex_index_t, int>
-    > 
+    >
     VLgraph_t;
 
   typedef adjacency_list
-    <listS, 
-    vecS, 
+    <listS,
+    vecS,
     undirectedS,
     property<vertex_index_t, int>
-    > 
+    >
     LVgraph_t;
 
-  typedef adjacency_list 
-    <listS, 
-    listS, 
+  typedef adjacency_list
+    <listS,
+    listS,
     undirectedS,
     property<vertex_index_t, int>
-    > 
+    >
     LLgraph_t;
 
-  typedef adjacency_list 
-    <setS, 
-    setS, 
+  typedef adjacency_list
+    <setS,
+    setS,
     undirectedS,
     property<vertex_index_t, int>
-    > 
+    >
     SSgraph_t;
 
   test_K_5<VVgraph_t>(NoVertexIndexUpdater());
@@ -230,7 +230,7 @@ int test_main(int, char* [])
   test_maximal_planar<VLgraph_t>(VertexIndexUpdater(), 10);
   test_maximal_planar<VLgraph_t>(VertexIndexUpdater(), 20);
   test_maximal_planar<VLgraph_t>(VertexIndexUpdater(), 50);
-  
+
   test_K_5<LVgraph_t>(NoVertexIndexUpdater());
   test_K_3_3<LVgraph_t>(NoVertexIndexUpdater());
   test_maximal_planar<LVgraph_t>(NoVertexIndexUpdater(), 3);

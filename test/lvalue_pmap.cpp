@@ -52,7 +52,7 @@ const double& bar_2(graph_t const & x)
     = get(edge_info_t(), x);
   return pmap[edge(vertex(0, x), vertex(1, x), x).first];
 }
-      
+
 int
 main()
 {

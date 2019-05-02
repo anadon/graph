@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -63,7 +63,7 @@ main(int argc, const char** argv)
   typedef graph_traits < file_dep_graph >::vertices_size_type size_type;
   size_type n_vertices;
   file_in >> n_vertices;        // read in number of vertices
-  std::istream_iterator < std::pair < size_type, size_type > > 
+  std::istream_iterator < std::pair < size_type, size_type > >
     input_begin(file_in), input_end;
 #if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
   // VC++ can't handle the iterator constructor

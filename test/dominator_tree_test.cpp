@@ -144,7 +144,7 @@ int test_main(int, char*[])
   testSet[3].correctIdoms.push_back(4);
   testSet[3].correctIdoms.push_back(4);
   testSet[3].correctIdoms.push_back(1);
-  
+
   // Muchnick. p256. figure 8.21
   testSet[4].numOfVertices = 8,
   testSet[4].edges.push_back(edge(0, 1));

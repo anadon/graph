@@ -11,24 +11,24 @@
   Sample output:
 
   G0:
-  0 --> 1 
-  1 --> 2 3 
-  2 --> 5 
-  3 --> 
-  4 --> 1 5 
-  5 --> 3 
-  0(0,1) 1(1,2) 2(1,3) 6(2,5) 3(4,1) 4(4,5) 5(5,3) 
+  0 --> 1
+  1 --> 2 3
+  2 --> 5
+  3 -->
+  4 --> 1 5
+  5 --> 3
+  0(0,1) 1(1,2) 2(1,3) 6(2,5) 3(4,1) 4(4,5) 5(5,3)
 
   G1:
-  2 --> 5 
-  4 --> 5 
-  5 --> 
-  6(2,5) 4(4,5) 
+  2 --> 5
+  4 --> 5
+  5 -->
+  6(2,5) 4(4,5)
 
   G2:
-  0 --> 1 
-  1 --> 
-  0(0,1) 
+  0 --> 1
+  1 -->
+  0(0,1)
 
  */
 
@@ -56,7 +56,7 @@ int main(int,char*[])
   add_vertex(C, G1); // global vertex C becomes local A1 for G1
   add_vertex(E, G1); // global vertex E becomes local B1 for G1
   add_vertex(F, G1); // global vertex F becomes local C1 for G1
-  
+
   add_vertex(A, G2); // global vertex A becomes local A1 for G2
   add_vertex(B, G2); // global vertex B becomes local B1 for G2
 

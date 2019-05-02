@@ -56,9 +56,9 @@ main()
   std::cout << "The edge connectivity is " << c << "." << std::endl;
   std::cout << "The disconnecting set is {";
 
-  std::copy(disconnecting_set.begin(), disconnecting_set.end(), 
+  std::copy(disconnecting_set.begin(), disconnecting_set.end(),
             std::ostream_iterator<edge_descriptor>(std::cout, " "));
   std::cout << "}." << std::endl;
-  
+
   return 0;
 }

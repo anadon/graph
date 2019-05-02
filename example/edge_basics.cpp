@@ -23,7 +23,7 @@ using namespace boost;
 
   There is not much to the Edge interface. Basically just two
   functions to access the source and target vertex:
-  
+
   source(e)
   target(e)
 
@@ -33,7 +33,7 @@ using namespace boost;
 
   Sample output:
 
-  (0,1) (0,2) (0,3) (0,4) (2,0) (2,4) (3,0) (3,1) 
+  (0,1) (0,2) (0,3) (0,4) (2,0) (2,4) (3,0) (3,1)
 
  */
 
@@ -55,7 +55,7 @@ struct exercise_edge {
     Vertex src = source(e, G);
     Vertex targ = target(e, G);
 
-    // print out the vertex id's just because 
+    // print out the vertex id's just because
     cout << "(" << src << "," << targ << ") ";
     //end
   }
@@ -70,7 +70,7 @@ main()
   typedef adjacency_list<> MyGraph;
 
   typedef pair<int,int> Pair;
-  Pair edge_array[8] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4), 
+  Pair edge_array[8] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4),
                          Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1) };
 
   // Construct a graph using the edge_array (passing in pointers

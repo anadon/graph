@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -34,7 +34,7 @@ struct vertex_properties {
   template<class Archive>
   void serialize(Archive & ar, const unsigned int version) {
     ar & name;
-  }  
+  }
 };
 
 struct edge_properties {
@@ -43,12 +43,12 @@ struct edge_properties {
   template<class Archive>
   void serialize(Archive & ar, const unsigned int version) {
     ar & name;
-  }  
+  }
 };
 
 using namespace boost;
 
-typedef adjacency_list<vecS, vecS, undirectedS, 
+typedef adjacency_list<vecS, vecS, undirectedS,
                vertex_properties, edge_properties> Graph;
 typedef graph_traits<Graph>::vertex_descriptor Vertex;
 typedef graph_traits<Graph>::edge_descriptor Edge;

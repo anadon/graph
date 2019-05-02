@@ -29,20 +29,20 @@
   distance(e) = 3
 
   min-max paths tree
-  a --> c 
-  b --> 
-  c --> d 
-  d --> e 
-  e --> b 
+  a --> c
+  b -->
+  c --> d
+  d --> e
+  e --> b
 
 */
 
-int 
+int
 main(int , char* [])
 {
   using namespace boost;
 
-  typedef adjacency_list<listS, vecS, directedS, 
+  typedef adjacency_list<listS, vecS, directedS,
     no_property, property<edge_weight_t, int> > Graph;
   typedef graph_traits<Graph>::vertex_descriptor Vertex;
 
@@ -51,7 +51,7 @@ main(int , char* [])
   const char name[] = "abcdef";
 
   const int num_nodes = 6;
-  E edges[] = { E(0,2), E(1,1), E(1,3), E(1,4), E(2,1), E(2,3), 
+  E edges[] = { E(0,2), E(1,1), E(1,3), E(1,4), E(2,1), E(2,3),
                 E(3,4), E(4,0), E(4,1) };
   int weights[] = { 1, 2, 1, 2, 7, 3, 1, 1, 1};
   const int n_edges = sizeof(edges)/sizeof(E);
@@ -94,7 +94,7 @@ main(int , char* [])
 
   std::cout << "min-max paths tree" << std::endl;
   adjacency_list<> tree(num_nodes);
-  
+
   for(boost::tie(vi,vend) = vertices(G); vi != vend; ++vi)
     if (*vi != p[*vi])
       add_edge(p[*vi], *vi, tree);

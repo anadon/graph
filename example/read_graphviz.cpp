@@ -21,7 +21,7 @@ using namespace std;
 int main() {
   // Vertex properties
   typedef property < vertex_name_t, std::string,
-            property < vertex_color_t, float > > vertex_p;  
+            property < vertex_color_t, float > > vertex_p;
   // Edge properties
   typedef property < edge_weight_t, double > edge_p;
   // Graph properties
@@ -47,7 +47,7 @@ int main() {
   dp.property("weight",weight);
 
   // Use ref_property_map to turn a graph property into a property map
-  boost::ref_property_map<graph_t*,std::string> 
+  boost::ref_property_map<graph_t*,std::string>
     gname(get_property(graph,graph_name));
   dp.property("name",gname);
 

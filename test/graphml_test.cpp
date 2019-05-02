@@ -39,7 +39,7 @@ using namespace boost;
 
 int test_main(int argc, char** argv)
 {
-    typedef adjacency_list<vecS,vecS,directedS, 
+    typedef adjacency_list<vecS,vecS,directedS,
                            property<vertex_color_t,int,
                              property<vertex_name_t,string> >,
                            property<edge_weight_t,double>,
@@ -60,7 +60,7 @@ int test_main(int argc, char** argv)
     BOOST_CHECK(num_vertices(g) == 9);
     BOOST_CHECK(num_edges(g) == 9);
     BOOST_CHECK(get(vertex_color_t(), g, vertex(2,g)) == 100);
-    BOOST_CHECK(get(vertex_color_t(), g, vertex(3,g)) == 42);    
+    BOOST_CHECK(get(vertex_color_t(), g, vertex(3,g)) == 42);
     BOOST_CHECK(std::abs(get(edge_weight_t(), g, edge(vertex(0,g),vertex(1,g),g).first) - 0.0) < 0.00001);
     BOOST_CHECK(std::abs(get(edge_weight_t(), g, edge(vertex(1,g),vertex(2,g),g).first) - 0.8) < 0.00001);
     BOOST_CHECK(get("description", dp, &g) == "Root graph.");

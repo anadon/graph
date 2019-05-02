@@ -42,14 +42,14 @@
 
 /*************************************
 *
-* example which reads in a max-flow problem from std::cin, augments all paths from 
+* example which reads in a max-flow problem from std::cin, augments all paths from
 * source->NODE->sink and writes the graph back to std::cout
 *
 **************************************/
 
 template <typename EdgeCapacityMap>
 struct zero_edge_capacity{
-  
+
   zero_edge_capacity() { }
   zero_edge_capacity(EdgeCapacityMap cap_map):m_cap_map(cap_map){};
 
@@ -69,28 +69,28 @@ int main()
   no_property,
   property < edge_capacity_t, long,
   property < edge_reverse_t, Traits::edge_descriptor > > > Graph;
-  
+
   typedef graph_traits<Graph>::out_edge_iterator out_edge_iterator;
   typedef graph_traits<Graph>::edge_descriptor edge_descriptor;
   typedef graph_traits<Graph>::vertex_descriptor vertex_descriptor;
-  
+
   Graph g;
 
   typedef property_map < Graph, edge_capacity_t >::type tCapMap;
   typedef tCapMap::value_type tCapMapValue;
-  
+
   typedef property_map < Graph, edge_reverse_t >::type tRevEdgeMap;
-  
+
   tCapMap capacity = get(edge_capacity, g);
   tRevEdgeMap rev = get(edge_reverse, g);
-  
+
   vertex_descriptor s, t;
   /*reading the graph from stdin*/
   read_dimacs_max_flow(g, capacity, rev, s, t, std::cin);
-  
+
   /*process graph*/
   tCapMapValue augmented_flow = 0;
-  
+
   //we take the source node and check for each outgoing edge e which has a target(p) if we can augment that path
   out_edge_iterator oei,oe_end;
   for(boost::tie(oei, oe_end) = out_edges(s, g); oei != oe_end; ++oei){
@@ -100,7 +100,7 @@ int main()
     bool is_there;
     boost::tie(to_sink, is_there) = edge(v, t, g);
     if( is_there ){
-      if( get(capacity, to_sink) > get(capacity, from_source) ){ 
+      if( get(capacity, to_sink) > get(capacity, from_source) ){
         tCapMapValue to_augment = get(capacity, from_source);
         capacity[from_source] = 0;
         capacity[to_sink] -= to_augment;
@@ -117,7 +117,7 @@ int main()
   //remove edges with zero capacity (most of them are the reverse edges)
   zero_edge_capacity<tCapMap> filter(capacity);
   remove_edge_if(filter, g);
-  
+
   /*write the graph back to stdout */
   write_dimacs_max_flow(g, capacity, identity_property_map(),s, t, std::cout);
   //print flow we augmented to std::cerr

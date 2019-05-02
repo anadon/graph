@@ -1,7 +1,7 @@
 //=======================================================================
 // Copyright (c) 2005 Aaron Windsor
 //
-// Distributed under the Boost Software License, Version 1.0. 
+// Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 //
@@ -27,9 +27,9 @@
 
 using namespace boost;
 
-typedef adjacency_list<vecS, 
-                       vecS, 
-                       undirectedS, 
+typedef adjacency_list<vecS,
+                       vecS,
+                       undirectedS,
                        property<vertex_index_t, int> >  undirected_graph;
 
 typedef adjacency_list<listS,
@@ -37,12 +37,12 @@ typedef adjacency_list<listS,
                        undirectedS,
                        property<vertex_index_t, int> >  undirected_list_graph;
 
-typedef adjacency_matrix<undirectedS, 
+typedef adjacency_matrix<undirectedS,
                          property<vertex_index_t,int> > undirected_adjacency_matrix_graph;
 
 
 template <typename Graph>
-struct vertex_index_installer 
+struct vertex_index_installer
 {
   static void install(Graph&) {}
 };
@@ -51,11 +51,11 @@ struct vertex_index_installer
 template <>
 struct vertex_index_installer<undirected_list_graph>
 {
-  static void install(undirected_list_graph& g) 
+  static void install(undirected_list_graph& g)
   {
     typedef graph_traits<undirected_list_graph>::vertex_iterator vertex_iterator_t;
     typedef graph_traits<undirected_list_graph>::vertices_size_type v_size_t;
-    
+
     vertex_iterator_t vi, vi_end;
     v_size_t i = 0;
     for(boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi, ++i)
@@ -79,7 +79,7 @@ void complete_graph(Graph& g, int n)
       wi = vi;
       ++wi;
       for(; wi != vi_end; ++wi)
-        add_edge(*vi,*wi,g);      
+        add_edge(*vi,*wi,g);
     }
 }
 
@@ -90,7 +90,7 @@ void gabows_graph(Graph& g, int n)
 {
   //creates a graph with 2n vertices, consisting of the complete graph
   //on n vertices plus n vertices of degree one, each adjacent to one
-  //vertex in the complete graph. without any initial matching, this 
+  //vertex in the complete graph. without any initial matching, this
   //graph forces edmonds' algorithm into worst-case behavior.
 
   typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator_t;
@@ -154,7 +154,7 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
   mate_t edmonds_mate(double_num_v);
   mate_t greedy_mate(double_num_v);
   mate_t extra_greedy_mate(double_num_v);
-  
+
   //find a maximum cardinality matching using edmonds' blossom-shrinking algorithm, starting
   //with an empty matching.
   bool edmonds_result =
@@ -169,7 +169,7 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
                 << "the complete graph using " << graph_name << std::endl;
       all_tests_passed = false;
     }
-  
+
   //find a greedy matching
   bool greedy_result =
     matching<Graph, mate_t, vertex_index_map_t,
@@ -201,9 +201,9 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
   //as a sanity check, make sure that each of the matchings returned is a valid matching and has
   //1000 edges.
 
-  bool edmonds_sanity_check = 
+  bool edmonds_sanity_check =
     is_a_matching(g,edmonds_mate) && matching_size(g,edmonds_mate) == num_v;
-  
+
   BOOST_CHECK (edmonds_sanity_check);
   if (edmonds_result && !edmonds_sanity_check)
     {
@@ -213,8 +213,8 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
       all_tests_passed = false;
     }
 
-  bool greedy_sanity_check = 
-    is_a_matching(g,greedy_mate) && matching_size(g,greedy_mate) == num_v;  
+  bool greedy_sanity_check =
+    is_a_matching(g,greedy_mate) && matching_size(g,greedy_mate) == num_v;
 
   BOOST_CHECK (greedy_sanity_check);
   if (greedy_result && !greedy_sanity_check)
@@ -224,10 +224,10 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
                 << "actually a maximum cardinality matching." << std::endl;
       all_tests_passed = false;
     }
-  
+
   bool extra_greedy_sanity_check =
     is_a_matching(g,extra_greedy_mate) && matching_size(g,extra_greedy_mate) == num_v;
-  
+
   BOOST_CHECK (extra_greedy_sanity_check);
   if (extra_greedy_result && !extra_greedy_sanity_check)
     {
@@ -236,28 +236,28 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
                 << "actually a maximum cardinality matching." << std::endl;
       all_tests_passed = false;
     }
-  
+
   //Now remove an edge from the edmonds_mate matching.
   vertex_iterator_t vi,vi_end;
   for(boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
     if (edmonds_mate[*vi] != graph_traits<Graph>::null_vertex())
       break;
-  
+
   edmonds_mate[edmonds_mate[*vi]] = graph_traits<Graph>::null_vertex();
   edmonds_mate[*vi] = graph_traits<Graph>::null_vertex();
-  
+
   //...and run the matching verifier - it should tell us that the matching isn't
   //a maximum matching.
   bool modified_edmonds_verification_result =
     maximum_cardinality_matching_verifier<Graph,mate_t,vertex_index_map_t>::verify_matching(g,edmonds_mate,get(vertex_index,g));
-  
+
   BOOST_CHECK (!modified_edmonds_verification_result);
   if (modified_edmonds_verification_result)
     {
       std::cout << "Verifier was fooled into thinking that a non-maximum matching was maximum" << std::endl;
       all_tests_passed = false;
     }
-  
+
   Graph h(double_num_v);
   gabows_graph(h,num_v);
 
@@ -265,11 +265,11 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
 
   //gabow's graph always has a perfect matching. it's also a good example of why
   //one should initialize with the extra_greedy_matching in most cases.
-  
+
   mate_t gabow_mate(double_num_v);
-  
+
   bool gabows_graph_result = checked_edmonds_maximum_cardinality_matching(h,gabow_mate);
-  
+
   BOOST_CHECK (gabows_graph_result);
   if (!gabows_graph_result)
     {
@@ -277,7 +277,7 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
                 << "   Verifier reporting a maximum cardinality matching not found." << std::endl;
       all_tests_passed = false;
     }
-  
+
   BOOST_CHECK (matching_size(h,gabow_mate) == num_v);
   if (gabows_graph_result && matching_size(h,gabow_mate) != num_v)
     {
@@ -312,7 +312,7 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
     }
 
   mate_t random_mate(double_num_v);
-  bool random_graph_result = checked_edmonds_maximum_cardinality_matching(j,random_mate);  
+  bool random_graph_result = checked_edmonds_maximum_cardinality_matching(j,random_mate);
 
   BOOST_CHECK(random_graph_result);
   if (!random_graph_result)
@@ -325,15 +325,15 @@ void matching_test(std::size_t num_v, const std::string& graph_name)
   for(boost::tie(vi,vi_end) = vertices(j); vi != vi_end; ++vi)
     if (random_mate[*vi] != graph_traits<Graph>::null_vertex())
       break;
-  
+
   random_mate[random_mate[*vi]] = graph_traits<Graph>::null_vertex();
   random_mate[*vi] = graph_traits<Graph>::null_vertex();
-  
+
   //...and run the matching verifier - it should tell us that the matching isn't
   //a maximum matching.
   bool modified_random_verification_result =
     maximum_cardinality_matching_verifier<Graph,mate_t,vertex_index_map_t>::verify_matching(j,random_mate,get(vertex_index,j));
-  
+
   BOOST_CHECK(!modified_random_verification_result);
   if (modified_random_verification_result)
     {

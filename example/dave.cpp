@@ -45,7 +45,7 @@ using namespace boost;
               a
 
   Sample Output:
-a --> c d 
+a --> c d
 b --> a d
 c --> f
 d --> c e f
@@ -67,11 +67,11 @@ c(3); f
 f(9); g e
 e(4); g b
 g(7);
-b(14); d a 
+b(14); d a
 
 */
 
-typedef property<vertex_color_t, default_color_type, 
+typedef property<vertex_color_t, default_color_type,
          property<vertex_distance_t,int> > VProperty;
 typedef int weight_t;
 typedef property<edge_weight_t,weight_t> EProperty;
@@ -105,7 +105,7 @@ struct edge_printer
 
   template <class T, class Graph>
   void operator()(T x, Graph& g) {
-    m_os << "(" << get(m_pa, source(x, g)) << "," 
+    m_os << "(" << get(m_pa, source(x, g)) << ","
          << get(m_pa, target(x, g)) << ") ";
   }
   PA m_pa;
@@ -119,7 +119,7 @@ print_edge(PA pa, std::ostream& os, Tag) {
 
 
 template <class NewGraph, class Tag>
-struct graph_copier 
+struct graph_copier
   : public boost::base_visitor<graph_copier<NewGraph, Tag> >
 {
   typedef Tag event_filter;
@@ -150,11 +150,11 @@ void print(Graph& G, Name name)
       cout << name[*vi] << " ";
     cout << endl;
   }
-    
+
 }
 
 
-int 
+int
 main(int , char* [])
 {
   // Name and ID numbers for the vertices
@@ -162,7 +162,7 @@ main(int , char* [])
   enum { a, b, c, d, e, f, g, N};
 
   Graph G(N);
-  boost::property_map<Graph, vertex_index_t>::type 
+  boost::property_map<Graph, vertex_index_t>::type
     vertex_id = get(vertex_index, G);
 
   std::vector<weight_t> distance(N, (numeric_limits<weight_t>::max)());
@@ -190,7 +190,7 @@ main(int , char* [])
 
   print(G, name);
 
-  adjacency_list<listS, vecS, directedS, 
+  adjacency_list<listS, vecS, directedS,
     property<vertex_color_t, default_color_type> > G_copy(N);
 
   cout << "Starting graph:" << endl;
@@ -207,10 +207,10 @@ main(int , char* [])
                                                 name[0]),
                       cout_char, on_examine_vertex()),
        write_property(make_iterator_property_map(distance.begin(),
-                                                vertex_id, 
-                                                distance[0]), 
+                                                vertex_id,
+                                                distance[0]),
                       cout_int, on_examine_vertex()),
-       print_edge(make_iterator_property_map(name, vertex_id, 
+       print_edge(make_iterator_property_map(name, vertex_id,
                                             name[0]),
                   std::cout, on_examine_edge()),
        print_endl(std::cout, on_finish_vertex()))),
@@ -220,8 +220,8 @@ main(int , char* [])
 
   parent[vertex(a, G)] = vertex(a, G);
   boost::dijkstra_shortest_paths
-    (G, vertex(a, G), 
-     distance_map(make_iterator_property_map(distance.begin(), vertex_id, 
+    (G, vertex(a, G),
+     distance_map(make_iterator_property_map(distance.begin(), vertex_id,
                                              distance[0])).
      predecessor_map(make_iterator_property_map(parent.begin(), vertex_id,
                                                 parent[0])).
@@ -230,17 +230,17 @@ main(int , char* [])
   cout << endl;
   cout << "Result:" << endl;
   boost::breadth_first_search
-    (G, vertex(a, G), 
+    (G, vertex(a, G),
      visitor(make_bfs_visitor(
      boost::make_list
      (write_property(make_iterator_property_map(name, vertex_id,
                                                 name[0]),
                      cout_char, on_examine_vertex()),
       write_property(make_iterator_property_map(distance.begin(),
-                                                vertex_id, 
-                                                distance[0]), 
+                                                vertex_id,
+                                                distance[0]),
                      cout_int, on_examine_vertex()),
-      print_edge(make_iterator_property_map(name, vertex_id, 
+      print_edge(make_iterator_property_map(name, vertex_id,
                                             name[0]),
                  std::cout, on_examine_edge()),
       print_endl(std::cout, on_finish_vertex())))));

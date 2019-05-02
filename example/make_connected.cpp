@@ -27,7 +27,7 @@ int main(int argc, char** argv)
       vecS,
       undirectedS,
       property<vertex_index_t, int>
-    > 
+    >
     graph;
 
   graph g(11);
@@ -40,9 +40,9 @@ int main(int argc, char** argv)
   add_edge(9,10,g);
   add_edge(10,8,g);
 
-  std::vector< graph_traits<graph>::vertices_size_type > 
+  std::vector< graph_traits<graph>::vertices_size_type >
     component(num_vertices(g));
-  
+
   std::cout << "Before calling make_connected, the graph has "
             << connected_components(g, &component[0])
             << " connected components" << std::endl;

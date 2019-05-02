@@ -65,16 +65,16 @@ main()
 
       if (! std::equal(v.begin(), v.end(), w.begin())) {
         std::cout << std::endl << "heap sorted: ";
-        std::copy(v.begin(), v.end(), 
+        std::copy(v.begin(), v.end(),
                   std::ostream_iterator<float>(std::cout," "));
         std::cout << std::endl << "correct: ";
-        std::copy(w.begin(), w.end(), 
+        std::copy(w.begin(), w.end(),
                   std::ostream_iterator<float>(std::cout," "));
         std::cout << std::endl;
         return -1;
       }
     }
   }
-  std::cout << "fibonacci heap passed test" << std::endl; 
+  std::cout << "fibonacci heap passed test" << std::endl;
   return 0;
 }

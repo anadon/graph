@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2002 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2002 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -49,10 +49,10 @@ int main(int, char*[])
     no_property,
     property<edge_color_t, default_color_type> > graph_t;
   typedef graph_traits<graph_t>::vertex_descriptor vertex_t;
-  
+
   const std::size_t N = sizeof(name)/sizeof(std::string);
   graph_t g(N);
-  
+
   add_edge(0, 1, g);
   add_edge(0, 8, g);
   add_edge(0, 9, g);
@@ -69,12 +69,12 @@ int main(int, char*[])
   add_edge(5, 6, g);
   add_edge(6, 11, g);
   add_edge(7, 14, g);
-  
+
   std::cout << "back edges:\n";
   detect_loops vis;
   undirected_dfs(g, root_vertex(vertex_t(0)).visitor(vis)
                  .edge_color_map(get(edge_color, g)));
   std::cout << std::endl;
-  
+
   return boost::exit_success;
 }

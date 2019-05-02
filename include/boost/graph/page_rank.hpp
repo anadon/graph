@@ -26,7 +26,7 @@ struct n_iterations
   explicit n_iterations(std::size_t n) : n(n) { }
 
   template<typename RankMap, typename Graph>
-  bool 
+  bool
   operator()(const RankMap&, const Graph&)
   {
     return n-- == 0;
@@ -44,7 +44,7 @@ namespace detail {
   {
     typedef typename property_traits<RankMap>::value_type rank_type;
 
-    // Set new rank maps 
+    // Set new rank maps
     BGL_FORALL_VERTICES_T(v, g, Graph) put(to_rank, v, rank_type(1 - damping));
 
     BGL_FORALL_VERTICES_T(u, g, Graph) {
@@ -71,7 +71,7 @@ namespace detail {
 
 template<typename Graph, typename RankMap, typename Done, typename RankMap2>
 void
-page_rank(const Graph& g, RankMap rank_map, Done done, 
+page_rank(const Graph& g, RankMap rank_map, Done done,
           typename property_traits<RankMap>::value_type damping,
           typename graph_traits<Graph>::vertices_size_type n,
           RankMap2 rank_map2
@@ -102,7 +102,7 @@ page_rank(const Graph& g, RankMap rank_map, Done done,
 
 template<typename Graph, typename RankMap, typename Done>
 void
-page_rank(const Graph& g, RankMap rank_map, Done done, 
+page_rank(const Graph& g, RankMap rank_map, Done done,
           typename property_traits<RankMap>::value_type damping,
           typename graph_traits<Graph>::vertices_size_type n)
 {
@@ -115,7 +115,7 @@ page_rank(const Graph& g, RankMap rank_map, Done done,
 
 template<typename Graph, typename RankMap, typename Done>
 inline void
-page_rank(const Graph& g, RankMap rank_map, Done done, 
+page_rank(const Graph& g, RankMap rank_map, Done done,
           typename property_traits<RankMap>::value_type damping = 0.85)
 {
   page_rank(g, rank_map, done, damping, num_vertices(g));
@@ -135,7 +135,7 @@ page_rank(const Graph& g, RankMap rank_map)
 template<typename MutableGraph>
 void
 remove_dangling_links(MutableGraph& g
-                      BOOST_GRAPH_ENABLE_IF_MODELS_PARM(MutableGraph, 
+                      BOOST_GRAPH_ENABLE_IF_MODELS_PARM(MutableGraph,
                                                         vertex_list_graph_tag))
 {
   typename graph_traits<MutableGraph>::vertices_size_type old_n;

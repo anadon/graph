@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
   transitive_closure(g,g_TC);
 
-  cout << "original graph: 0->2, 1->0, 1->2, 1->4, 3->0, 3->2, 4->2, 4->3" 
+  cout << "original graph: 0->2, 1->0, 1->2, 1->4, 3->0, 3->2, 4->2, 4->3"
        << endl;
   cout << "transitive closure: ";
   graph_t::edge_iterator i,iend;

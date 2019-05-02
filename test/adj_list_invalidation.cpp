@@ -6,7 +6,7 @@
 
 /***********************************************************
 
-IMPORTANT: this file should not be tested - it creates invalid graphs/sequences 
+IMPORTANT: this file should not be tested - it creates invalid graphs/sequences
 which *do* crash at runtime - this seems to be the intent, but it's not
 clear why or whether the file should be retained.
 

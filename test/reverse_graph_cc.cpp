@@ -18,7 +18,7 @@ int main(int,char*[])
   using namespace boost;
   // Check const reverse_graph
   {
-    typedef adjacency_list< vecS, vecS, bidirectionalS, 
+    typedef adjacency_list< vecS, vecS, bidirectionalS,
       property<vertex_color_t, int>,
       property<edge_weight_t, int>,
       property<graph_name_t, std::string>
@@ -37,7 +37,7 @@ int main(int,char*[])
   }
   // Check non-const reverse_graph
   {
-    typedef adjacency_list< vecS, vecS, bidirectionalS, 
+    typedef adjacency_list< vecS, vecS, bidirectionalS,
       property<vertex_color_t, int>,
       property<edge_weight_t, int>,
       property<graph_name_t, std::string>

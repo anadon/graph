@@ -29,7 +29,7 @@ struct total_length_visitor : public boost::dijkstra_visitor<> {
     : _total_length(len), _distance(d) { }
   template <class Vertex, class Graph>
   inline void finish_vertex(Vertex s, Graph& g) {
-    _total_length += boost::get(_distance, s); 
+    _total_length += boost::get(_distance, s);
   }
   D& _total_length;
   Distance _distance;
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
 
    prim_minimum_spanning_tree(g, p,
                               distance_map(get(z_property<long>(), g)).
-                              weight_map(get(edge_length_t(), g)). 
+                              weight_map(get(edge_length_t(), g)).
                               // Use the "y" utility field for color
                               color_map(get(y_property<long>(), g)).
                               visitor(length_vis));

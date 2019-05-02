@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -43,7 +43,7 @@ main()
   std::vector < Vertex > parent(num_vertices(g));
   property_map < Graph, edge_weight_t >::type weight = get(edge_weight, g);
 #if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
-  property_map<Graph, vertex_index_t>::type indexmap = get(vertex_index, g);  
+  property_map<Graph, vertex_index_t>::type indexmap = get(vertex_index, g);
   std::vector<std::size_t> distance(num_vertices(g));
   prim_minimum_spanning_tree(g, *vertices(g).first, &parent[0], &distance[0],
                              weight, indexmap, default_dijkstra_visitor());

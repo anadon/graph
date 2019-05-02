@@ -24,11 +24,11 @@
 
   Sample output:
 
-  0 --> 1 
-  1 --> 2 3 0 
-  2 --> 4 1 
-  3 --> 4 1 
-  4 --> 2 3 
+  0 --> 1
+  1 --> 2 3 0
+  2 --> 4 1
+  3 --> 4 1
+  4 --> 2 3
 
  */
 
@@ -52,8 +52,8 @@ public:
   edge_stream_iterator() : m_stream(0), m_end_marker(false) {}
   edge_stream_iterator(std::istream& s) : m_stream(&s) { m_read(); }
   reference operator*() const { return m_edge; }
-  edge_stream_iterator& operator++() { 
-    m_read(); 
+  edge_stream_iterator& operator++() {
+    m_read();
     return *this;
   }
   edge_stream_iterator operator++(int)  {
@@ -79,7 +79,7 @@ protected:
 bool operator==(const edge_stream_iterator& x,
                 const edge_stream_iterator& y)
 {
-  return (x.m_stream == y.m_stream && x.m_end_marker == y.m_end_marker) 
+  return (x.m_stream == y.m_stream && x.m_end_marker == y.m_end_marker)
     || (x.m_end_marker == false && y.m_end_marker == false);
 }
 bool operator!=(const edge_stream_iterator& x,

@@ -22,14 +22,14 @@ using namespace boost;
 
 int main(int argc, char** argv)
 {
-  
+
   typedef adjacency_list
     < vecS,
       vecS,
       undirectedS,
       property<vertex_index_t, int>,
       property<edge_index_t, int>
-    > 
+    >
     graph;
 
   graph g(11);
@@ -53,35 +53,35 @@ int main(int argc, char** argv)
   graph_traits<graph>::edge_iterator ei, ei_end;
   for(boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei)
     put(e_index, *ei, edge_count++);
-  
-  
+
+
   //Test for planarity; compute the planar embedding as a side-effect
   typedef std::vector< graph_traits<graph>::edge_descriptor > vec_t;
   std::vector<vec_t> embedding(num_vertices(g));
   if (boyer_myrvold_planarity_test(boyer_myrvold_params::graph = g,
-                                   boyer_myrvold_params::embedding = 
+                                   boyer_myrvold_params::embedding =
                                      &embedding[0]
                                    )
       )
     std::cout << "Input graph is planar" << std::endl;
   else
     std::cout << "Input graph is not planar" << std::endl;
-  
-  typedef std::vector< graph_traits<graph>::edges_size_type > 
+
+  typedef std::vector< graph_traits<graph>::edges_size_type >
     component_storage_t;
   typedef iterator_property_map
-    < component_storage_t::iterator, 
+    < component_storage_t::iterator,
       property_map<graph, edge_index_t>::type
     >
     component_map_t;
-  
+
   component_storage_t component_storage(num_edges(g));
   component_map_t component(component_storage.begin(), get(edge_index, g));
-  
+
   std::cout << "Before calling make_biconnected_planar, the graph has "
             << biconnected_components(g, component)
             << " biconnected components" << std::endl;
-  
+
   make_biconnected_planar(g, &embedding[0]);
 
   // Re-initialize the edge index, since we just added a few edges
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 
   // Re-size the storage for the biconnected components, since we
   // just added a few edges
-  
+
   component_storage.resize(num_edges(g));
   component = component_map_t(component_storage.begin(), get(edge_index,g));
 
@@ -104,5 +104,5 @@ int main(int argc, char** argv)
   else
     std::cout << "But the graph is not still planar." << std::endl;
 
-  return 0;  
+  return 0;
 }

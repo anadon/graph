@@ -30,7 +30,7 @@ struct City {
 
   City(const std::string& name, int population = -1)
     : name(name), population(population) { }
-  
+
   std::string name;
   int population;
 };
@@ -82,7 +82,7 @@ int test_main(int, char*[])
   add_edge("Indianapolis", "Cincinnatti", map);
 
   BGL_FORALL_EDGES(road, map, RoadMap)
-    std::cout << map[source(road, map)].name << " -> " 
+    std::cout << map[source(road, map)].name << " -> "
               << map[target(road, map)].name << std::endl;
 
   BOOST_CHECK(map[*find_vertex("Cincinnatti", map)].population == -1);

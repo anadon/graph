@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -18,13 +18,13 @@ using namespace boost;
 int
 main(int, char *[])
 {
-  typedef adjacency_list_traits<listS, listS, 
+  typedef adjacency_list_traits<listS, listS,
     directedS>::vertex_descriptor vertex_descriptor;
   typedef adjacency_list < listS, listS, directedS,
-    property<vertex_index_t, int, 
+    property<vertex_index_t, int,
     property<vertex_name_t, char,
     property<vertex_distance_t, int,
-    property<vertex_predecessor_t, vertex_descriptor> > > >, 
+    property<vertex_predecessor_t, vertex_descriptor> > > >,
     property<edge_weight_t, int> > graph_t;
   typedef std::pair<int, int> Edge;
 

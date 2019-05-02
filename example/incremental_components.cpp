@@ -25,12 +25,12 @@
   Sample output:
 
   An undirected graph:
-  0 <--> 1 4 
-  1 <--> 0 4 
-  2 <--> 5 
-  3 <--> 
-  4 <--> 1 0 
-  5 <--> 2 
+  0 <--> 1 4
+  1 <--> 0 4
+  2 <--> 5
+  3 <-->
+  4 <--> 1 0
+  5 <--> 2
 
   representative[0] = 1
   representative[1] = 1
@@ -39,15 +39,15 @@
   representative[4] = 1
   representative[5] = 5
 
-  component 0 contains: 4 1 0 
-  component 1 contains: 3 
-  component 2 contains: 5 2 
+  component 0 contains: 4 1 0
+  component 1 contains: 3
+  component 2 contains: 5 2
 
  */
 
 using namespace boost;
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
   typedef adjacency_list <vecS, vecS, undirectedS> Graph;
   typedef graph_traits<Graph>::vertex_descriptor Vertex;
@@ -81,11 +81,11 @@ int main(int argc, char* argv[])
 
   boost::tie(edge, flag) = add_edge(2, 5, graph);
   ds.union_set(2,5);
-    
+
   std::cout << "An undirected graph:" << std::endl;
   print_graph(graph, get(boost::vertex_index, graph));
   std::cout << std::endl;
-    
+
   BOOST_FOREACH(Vertex current_vertex, vertices(graph)) {
     std::cout << "representative[" << current_vertex << "] = " <<
       ds.find_set(current_vertex) << std::endl;

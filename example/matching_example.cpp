@@ -1,7 +1,7 @@
 //=======================================================================
 // Copyright (c) 2005 Aaron Windsor
 //
-// Distributed under the Boost Software License, Version 1.0. 
+// Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 //
@@ -16,7 +16,7 @@
 
 using namespace boost;
 
-typedef adjacency_list<vecS, vecS, undirectedS> my_graph; 
+typedef adjacency_list<vecS, vecS, undirectedS> my_graph;
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
   // vertices that we'll use later...
 
   my_graph g(n_vertices);
-  
+
   // our vertices are stored in a vector, so we can refer to vertices
   // by integers in the range 0..15
 
@@ -82,7 +82,7 @@ int main()
   std::cout << std::endl << "Found a matching of size " << matching_size(g, &mate[0]) << std::endl;
 
   std::cout << "The matching is:" << std::endl;
-  
+
   graph_traits<my_graph>::vertex_iterator vi, vi_end;
   for(boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
     if (mate[*vi] != graph_traits<my_graph>::null_vertex() && *vi < mate[*vi])
@@ -109,7 +109,7 @@ int main()
   std::cout << std::endl << "Found a matching of size " << matching_size(g, &mate[0]) << std::endl;
 
   std::cout << "The matching is:" << std::endl;
-  
+
   for(boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
     if (mate[*vi] != graph_traits<my_graph>::null_vertex() && *vi < mate[*vi])
       std::cout << "{" << *vi << ", " << mate[*vi] << "}" << std::endl;

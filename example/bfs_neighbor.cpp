@@ -21,7 +21,7 @@
 #include <boost/property_map/property_map.hpp>
 
 /*
-  
+
   This examples shows how to use the breadth_first_search() GGCL
   algorithm, specifically the 3 argument variant of bfs that assumes
   the graph has a color property (property) stored internally.
@@ -37,12 +37,12 @@
 
   Sample Output:
 
-  0 --> 2 
-  1 --> 1 3 4 
-  2 --> 1 3 4 
-  3 --> 1 4 
-  4 --> 0 1 
-  distances: 1 2 1 2 0 
+  0 --> 2
+  1 --> 1 3 4
+  2 --> 1 3 4
+  3 --> 1 4
+  4 --> 0 1
+  distances: 1 2 1 2 0
   parent[0] = 4
   parent[1] = 2
   parent[2] = 0
@@ -63,7 +63,7 @@ struct print_parent {
 
 
 template <class NewGraph, class Tag>
-struct graph_copier 
+struct graph_copier
   : public boost::base_visitor<graph_copier<NewGraph, Tag> >
 {
   typedef Tag event_filter;
@@ -84,16 +84,16 @@ copy_graph(NewGraph& g, Tag) {
   return graph_copier<NewGraph, Tag>(g);
 }
 
-int main(int , char* []) 
+int main(int , char* [])
 {
-  typedef boost::adjacency_list< 
+  typedef boost::adjacency_list<
     boost::mapS, boost::vecS, boost::bidirectionalS,
     boost::property<boost::vertex_color_t, boost::default_color_type,
         boost::property<boost::vertex_degree_t, int,
           boost::property<boost::vertex_in_degree_t, int,
     boost::property<boost::vertex_out_degree_t, int> > > >
   > Graph;
-  
+
   Graph G(5);
   boost::add_edge(0, 2, G);
   boost::add_edge(1, 1, G);
@@ -118,7 +118,7 @@ int main(int , char* [])
 
   // Array to store distances from the source to each vertex .  We use
   // a built-in array here just for variety. This will also be used as
-  // a Decorator.  
+  // a Decorator.
   boost::graph_traits<Graph>::vertices_size_type d[5];
   std::fill_n(d, 5, 0);
 
@@ -126,10 +126,10 @@ int main(int , char* [])
   Vertex s = *(boost::vertices(G).first);
   p[s] = s;
   boost::neighbor_breadth_first_search
-    (G, s, 
+    (G, s,
      boost::visitor(boost::make_neighbor_bfs_visitor
      (std::make_pair(boost::record_distances(d, boost::on_tree_edge()),
-                     boost::record_predecessors(&p[0], 
+                     boost::record_predecessors(&p[0],
                                                  boost::on_tree_edge())))));
 
   boost::print_graph(G);
@@ -143,7 +143,7 @@ int main(int , char* [])
 #endif
     std::cout << std::endl;
 
-    std::for_each(boost::vertices(G).first, boost::vertices(G).second, 
+    std::for_each(boost::vertices(G).first, boost::vertices(G).second,
                   print_parent<Piter>(&p[0]));
   }
 

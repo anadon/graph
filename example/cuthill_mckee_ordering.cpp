@@ -20,20 +20,20 @@
   Sample Output
   original bandwidth: 8
   Reverse Cuthill-McKee ordering starting at: 6
-    8 3 0 9 2 5 1 4 7 6 
+    8 3 0 9 2 5 1 4 7 6
     bandwidth: 4
   Reverse Cuthill-McKee ordering starting at: 0
-    9 1 4 6 7 2 8 5 3 0 
+    9 1 4 6 7 2 8 5 3 0
     bandwidth: 4
   Reverse Cuthill-McKee ordering:
-    0 8 5 7 3 6 4 2 1 9 
+    0 8 5 7 3 6 4 2 1 9
     bandwidth: 4
  */
 int main(int , char* [])
 {
   using namespace boost;
   using namespace std;
-  typedef adjacency_list<vecS, vecS, undirectedS, 
+  typedef adjacency_list<vecS, vecS, undirectedS,
      property<vertex_color_t, default_color_type,
        property<vertex_degree_t,int> > > Graph;
   typedef graph_traits<Graph>::vertex_descriptor Vertex;
@@ -53,8 +53,8 @@ int main(int , char* [])
                      Pair(4,6),  //e-g
                      Pair(5,6),  //f-g
                      Pair(5,7),  //f-h
-                     Pair(6,7) }; //g-h 
-  
+                     Pair(6,7) }; //g-h
+
   Graph G(10);
   for (int i = 0; i < 14; ++i)
     add_edge(edges[i].first, edges[i].second, G);
@@ -75,10 +75,10 @@ int main(int , char* [])
   {
     Vertex s = vertex(6, G);
     //reverse cuthill_mckee_ordering
-    cuthill_mckee_ordering(G, s, inv_perm.rbegin(), get(vertex_color, G), 
+    cuthill_mckee_ordering(G, s, inv_perm.rbegin(), get(vertex_color, G),
                            get(vertex_degree, G));
     cout << "Reverse Cuthill-McKee ordering starting at: " << s << endl;
-    cout << "  ";    
+    cout << "  ";
     for (std::vector<Vertex>::const_iterator i = inv_perm.begin();
          i != inv_perm.end(); ++i)
       cout << index_map[*i] << " ";
@@ -86,7 +86,7 @@ int main(int , char* [])
 
     for (size_type c = 0; c != inv_perm.size(); ++c)
       perm[index_map[inv_perm[c]]] = c;
-    std::cout << "  bandwidth: " 
+    std::cout << "  bandwidth: "
               << bandwidth(G, make_iterator_property_map(&perm[0], index_map, perm[0]))
               << std::endl;
   }
@@ -104,7 +104,7 @@ int main(int , char* [])
 
     for (size_type c = 0; c != inv_perm.size(); ++c)
       perm[index_map[inv_perm[c]]] = c;
-    std::cout << "  bandwidth: " 
+    std::cout << "  bandwidth: "
               << bandwidth(G, make_iterator_property_map(&perm[0], index_map, perm[0]))
               << std::endl;
   }
@@ -113,7 +113,7 @@ int main(int , char* [])
     //reverse cuthill_mckee_ordering
     cuthill_mckee_ordering(G, inv_perm.rbegin(), get(vertex_color, G),
                            make_degree_map(G));
-    
+
     cout << "Reverse Cuthill-McKee ordering:" << endl;
     cout << "  ";
     for (std::vector<Vertex>::const_iterator i=inv_perm.begin();
@@ -123,7 +123,7 @@ int main(int , char* [])
 
     for (size_type c = 0; c != inv_perm.size(); ++c)
       perm[index_map[inv_perm[c]]] = c;
-    std::cout << "  bandwidth: " 
+    std::cout << "  bandwidth: "
               << bandwidth(G, make_iterator_property_map(&perm[0], index_map, perm[0]))
               << std::endl;
   }

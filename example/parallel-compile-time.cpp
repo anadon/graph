@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -37,9 +37,9 @@ typedef adjacency_list < listS, // Store out-edges of each vertex in a std::list
   listS,                        // Store vertex set in a std::list
   directedS,                    // The file dependency graph is directed
   // vertex properties
-  property < vertex_name_t, std::string, 
+  property < vertex_name_t, std::string,
   property < vertex_compile_cost_t, float,
-  property < vertex_distance_t, float, 
+  property < vertex_distance_t, float,
   property < vertex_color_t, default_color_type > > > >,
   // an edge property
   property < edge_weight_t, float > >
@@ -85,7 +85,7 @@ generic_dfs_v2(const Graph & g, Visitor vis, ColorMap color)
 }
 
 
-template < typename OutputIterator > 
+template < typename OutputIterator >
 struct topo_visitor: public default_dfs_visitor
 {
   topo_visitor(OutputIterator & order):

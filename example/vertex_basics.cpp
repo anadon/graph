@@ -23,31 +23,31 @@ using namespace boost;
 
   Sample output:
 
-  vertices(g) = 0 1 2 3 4 
+  vertices(g) = 0 1 2 3 4
   vertex id: 0
-  out-edges: (0,1) (0,2) (0,3) (0,4) 
-  in-edges: (2,0) (3,0) (4,0) 
-  adjacent vertices: 1 2 3 4 
+  out-edges: (0,1) (0,2) (0,3) (0,4)
+  in-edges: (2,0) (3,0) (4,0)
+  adjacent vertices: 1 2 3 4
 
   vertex id: 1
-  out-edges: 
-  in-edges: (0,1) (3,1) (4,1) 
-  adjacent vertices: 
+  out-edges:
+  in-edges: (0,1) (3,1) (4,1)
+  adjacent vertices:
 
   vertex id: 2
-  out-edges: (2,0) (2,4) 
-  in-edges: (0,2) 
-  adjacent vertices: 0 4 
+  out-edges: (2,0) (2,4)
+  in-edges: (0,2)
+  adjacent vertices: 0 4
 
   vertex id: 3
-  out-edges: (3,0) (3,1) (3,4) 
-  in-edges: (0,3) 
-  adjacent vertices: 0 1 4 
+  out-edges: (3,0) (3,1) (3,4)
+  in-edges: (0,3)
+  adjacent vertices: 0 1 4
 
   vertex id: 4
-  out-edges: (4,0) (4,1) 
-  in-edges: (0,4) (2,4) (3,4) 
-  adjacent vertices: 0 1 
+  out-edges: (4,0) (4,1)
+  in-edges: (0,4) (2,4) (3,4)
+  adjacent vertices: 0 1
 
 
  */
@@ -63,7 +63,7 @@ struct print_edge {
   typedef typename boost::graph_traits<Graph>::vertex_descriptor Vertex;
   void operator()(Edge e) const
   {
-    typename boost::property_map<Graph, vertex_index_t>::type 
+    typename boost::property_map<Graph, vertex_index_t>::type
       id = get(vertex_index, G);
 
     Vertex src = source(e, G);
@@ -82,7 +82,7 @@ struct print_index {
   typedef typename boost::graph_traits<Graph>::vertex_descriptor Vertex;
   void operator()(Vertex c) const
   {
-    typename boost::property_map<Graph,vertex_index_t>::type 
+    typename boost::property_map<Graph,vertex_index_t>::type
       id = get(vertex_index, G);
     cout << id[c] << " ";
   }
@@ -99,25 +99,25 @@ struct exercise_vertex {
 
   void operator()(Vertex v) const
   {
-    typename boost::property_map<Graph, vertex_index_t>::type 
+    typename boost::property_map<Graph, vertex_index_t>::type
       id = get(vertex_index, g);
 
     cout << "vertex id: " << id[v] << endl;
-    
+
     cout << "out-edges: ";
-    for_each(out_edges(v, g).first, out_edges(v,g).second, 
+    for_each(out_edges(v, g).first, out_edges(v,g).second,
              print_edge<Graph>(g));
 
     cout << endl;
 
     cout << "in-edges: ";
-    for_each(in_edges(v, g).first, in_edges(v,g).second, 
+    for_each(in_edges(v, g).first, in_edges(v,g).second,
              print_edge<Graph>(g));
 
     cout << endl;
-    
+
     cout << "adjacent vertices: ";
-    for_each(adjacent_vertices(v,g).first, 
+    for_each(adjacent_vertices(v,g).first,
              adjacent_vertices(v,g).second, print_index<Graph>(g));
     cout << endl << endl;
   }
@@ -132,8 +132,8 @@ main()
   typedef adjacency_list<vecS,vecS,bidirectionalS> MyGraphType;
 
   typedef pair<int,int> Pair;
-  Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4), 
-                          Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1), 
+  Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4),
+                          Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1),
                           Pair(3,4), Pair(4,0), Pair(4,1) };
 
   /* Construct a graph using the edge_array*/
@@ -141,7 +141,7 @@ main()
   for (int i=0; i<11; ++i)
     add_edge(edge_array[i].first, edge_array[i].second, g);
 
-  boost::property_map<MyGraphType, vertex_index_t>::type 
+  boost::property_map<MyGraphType, vertex_index_t>::type
     id = get(vertex_index, g);
 
   cout << "vertices(g) = ";

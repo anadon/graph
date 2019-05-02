@@ -1,4 +1,4 @@
-//  (C) Copyright 2004 Douglas Gregor and Jeremy Siek 
+//  (C) Copyright 2004 Douglas Gregor and Jeremy Siek
 //  Distributed under the Boost Software License, Version 1.0. (See
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
@@ -29,7 +29,7 @@ test_main(int, char*[])
     edge_prop p2 = { 17 };
     add_edge(0, 1, p1, g);
     add_edge(1, 0, p2, g);
-    
+
     edge e1 = boost::edge(0, 1, g).first;
     edge e2 = boost::edge(1, 0, g).first;
     BOOST_CHECK( num_edges(g) == 2 );

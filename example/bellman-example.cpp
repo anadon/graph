@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -15,7 +15,7 @@
 
 using namespace boost;
 
-template < typename Graph, typename ParentMap > 
+template < typename Graph, typename ParentMap >
 struct edge_writer
 {
   edge_writer(const Graph & g, const ParentMap & p)
@@ -71,7 +71,7 @@ main()
   Graph g(edge_array, edge_array + n_edges, N);
 #endif
   graph_traits < Graph >::edge_iterator ei, ei_end;
-  property_map<Graph, int EdgeProperties::*>::type 
+  property_map<Graph, int EdgeProperties::*>::type
     weight_pmap = get(&EdgeProperties::weight, g);
   int i = 0;
   for (boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei, ++i)
@@ -85,7 +85,7 @@ main()
 
 #if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
   bool r = bellman_ford_shortest_paths
-    (g, int(N), weight_pmap, &parent[0], &distance[0], 
+    (g, int(N), weight_pmap, &parent[0], &distance[0],
      closed_plus<int>(), std::less<int>(), default_bellman_visitor());
 #else
   bool r = bellman_ford_shortest_paths

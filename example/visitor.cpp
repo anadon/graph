@@ -53,29 +53,29 @@ struct edge_printer : public base_visitor<edge_printer<Tag> > {
   edge_printer(std::string edge_t) : m_edge_type(edge_t) { }
   template <class Edge, class Graph>
   void operator()(Edge e, Graph& G) {
-    std::cout << m_edge_type << ": " << source(e, G) 
+    std::cout << m_edge_type << ": " << source(e, G)
               << " --> " <<  target(e, G) << std::endl;
   }
   std::string m_edge_type;
 };
 template <class Tag>
-edge_printer<Tag> print_edge(std::string type, Tag) { 
+edge_printer<Tag> print_edge(std::string type, Tag) {
   return edge_printer<Tag>(type);
 }
 
-int 
+int
 main(int, char*[])
 {
 
   using namespace boost;
-  
+
   typedef adjacency_list<> Graph;
   typedef std::pair<int,int> E;
   E edges[] = { E(0, 2),
                 E(1, 1), E(1, 3),
                 E(2, 1), E(2, 3),
                 E(3, 1), E(3, 4),
-                E(4, 0), E(4, 1) };  
+                E(4, 0), E(4, 1) };
 #if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
   Graph G(5);
   for (std::size_t j = 0; j < sizeof(edges)/sizeof(E); ++j)
@@ -85,8 +85,8 @@ main(int, char*[])
 #endif
 
   typedef boost::graph_traits<Graph>::vertices_size_type size_type;
-  
-  std::vector<size_type> d(num_vertices(G));  
+
+  std::vector<size_type> d(num_vertices(G));
   std::vector<size_type> f(num_vertices(G));
 
   cout << "DFS categorized directed graph" << endl;

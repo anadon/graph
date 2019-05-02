@@ -75,16 +75,16 @@ int main() {
   VertexProperty vp3(4, 3);
   EdgeProperty e12(1);
   EdgeProperty e23(2);
-        
+
   Graph g;
-        
+
   Vertex v1 = add_vertex(g); g[v1] = vp1;
   Vertex v2 = add_vertex(g); g[v2] = vp2;
   Vertex v3 = add_vertex(g); g[v3] = vp3;
-  
+
   add_edge(v1, v2, e12, g);
   add_edge(v2, v3, e23, g);
-    
+
   int index = 0;
   BGL_FORALL_VERTICES(v, g, Graph) {
     g[v].id = index++;
@@ -93,13 +93,13 @@ int main() {
   BGL_FORALL_EDGES(e, g, Graph) {
     g[e].id = index++;
   }
-  
+
   typedef vector<vector<Edge> > OptPath;
   typedef vector<ResourceCont> ParetoOpt;
-  
+
   OptPath op;
   ParetoOpt ol;
-  
+
   r_c_shortest_paths( g,
                       get(&VertexProperty::id, g),
                       get(&EdgeProperty::id, g),
@@ -112,6 +112,6 @@ int main() {
                       LabelDom(),
                       allocator<r_c_shortest_paths_label<Graph, ResourceCont> >(),
                       default_r_c_shortest_paths_visitor());
-  
+
   return 0;
 }

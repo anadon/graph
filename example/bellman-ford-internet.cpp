@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -30,7 +30,7 @@ main()
   typedef edge_list < Edge*, Edge, std::ptrdiff_t, std::random_access_iterator_tag> Graph;
   Graph g(edges, edges + n_edges);
 
-  // The transmission delay values for each edge.  
+  // The transmission delay values for each edge.
   float delay[] =
     {5.0, 1.0, 1.3, 3.0, 10.0, 2.0, 6.3, 0.4, 1.3, 1.2, 0.5};
 

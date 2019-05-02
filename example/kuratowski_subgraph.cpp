@@ -28,7 +28,7 @@ int main(int argc, char** argv)
       undirectedS,
       property<vertex_index_t, int>,
       property<edge_index_t, int>
-    > 
+    >
     graph;
 
   // Create a K_6 (complete graph on 6 vertices), which
@@ -57,15 +57,15 @@ int main(int argc, char** argv)
   graph_traits<graph>::edge_iterator ei, ei_end;
   for(boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei)
     put(e_index, *ei, edge_count++);
-  
 
-  // Test for planarity - we know it is not planar, we just want to 
+
+  // Test for planarity - we know it is not planar, we just want to
   // compute the kuratowski subgraph as a side-effect
-  typedef std::vector< graph_traits<graph>::edge_descriptor > 
+  typedef std::vector< graph_traits<graph>::edge_descriptor >
     kuratowski_edges_t;
   kuratowski_edges_t kuratowski_edges;
   if (boyer_myrvold_planarity_test(boyer_myrvold_params::graph = g,
-                                   boyer_myrvold_params::kuratowski_subgraph = 
+                                   boyer_myrvold_params::kuratowski_subgraph =
                                        std::back_inserter(kuratowski_edges)
                                    )
       )

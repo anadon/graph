@@ -24,7 +24,7 @@ void print_bipartite (const Graph& g)
   typedef graph_traits <Graph> traits;
   typename traits::vertex_iterator vertex_iter, vertex_end;
 
-  /// Most simple interface just tests for bipartiteness. 
+  /// Most simple interface just tests for bipartiteness.
 
   bool bipartite = is_bipartite (g);
 
@@ -89,7 +89,7 @@ int main (int argc, char **argv)
 
   /**
    * Create the graph drawn below.
-   * 
+   *
    *       2 - 1 - 0
    *       |       |
    *   3 - 6 - 5 - 4
@@ -97,7 +97,7 @@ int main (int argc, char **argv)
    *  |        7
    *  |       /
    *  8 ---- 9
-   *  
+   *
    **/
 
   E non_bipartite_edges[] = { E (0, 1), E (0, 4), E (1, 2), E (2, 6), E (3, 6), E (3, 8), E (4, 5), E (4, 7), E (5, 6),

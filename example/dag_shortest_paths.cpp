@@ -25,7 +25,7 @@
 int main()
 {
   using namespace boost;
-  typedef adjacency_list<vecS, vecS, directedS, 
+  typedef adjacency_list<vecS, vecS, directedS,
     property<vertex_distance_t, int>, property<edge_weight_t, int> > graph_t;
   graph_t g(6);
   enum verts { r, s, t, u, v, x };
@@ -53,7 +53,7 @@ int main()
   std::less<int> compare;
   closed_plus<int> combine;
   property_map<graph_t, edge_weight_t>::type w_map = get(edge_weight, g);
-  dag_shortest_paths(g, s, d_map, w_map, &color[0], &pred[0], 
+  dag_shortest_paths(g, s, d_map, w_map, &color[0], &pred[0],
      vis, compare, combine, (std::numeric_limits<int>::max)(), 0);
 #else
   dag_shortest_paths(g, s, distance_map(d_map));

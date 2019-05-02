@@ -101,7 +101,7 @@ void do_test(minstd_rand& generator) {
          dimension_index < Dims;
          ++dimension_index) {
       BOOST_REQUIRE(/*(current_vertex[dimension_index] >= 0) && */ // Always true
-                   (current_vertex[dimension_index] < lengths[dimension_index]));        
+                   (current_vertex[dimension_index] < lengths[dimension_index]));
     }
 
     // Verify out-edges of this vertex
@@ -155,7 +155,7 @@ void do_test(minstd_rand& generator) {
     // Verify that this vertex is not listed as connected to any
     // vertices outside of its adjacent vertices.
     BOOST_FOREACH(vertex_descriptor unconnected_vertex, vertices(graph)) {
-      
+
       vertices_size_type unconnected_index =
         get(boost::vertex_index, graph, unconnected_vertex);
 

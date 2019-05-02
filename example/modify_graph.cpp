@@ -15,7 +15,7 @@
 
 using namespace boost;
 
-// Predicate Function for use in remove if 
+// Predicate Function for use in remove if
 template <class NamePropertyMap>
 struct name_equals_predicate
 {
@@ -60,7 +60,7 @@ void modify_demo(MutableGraph& g)
   }
   {
     remove_vertex(v, g);
-    
+
     assert(num_vertices(g) == n);
     assert(size_type(vertices(g).second - vertices(g).first) == n);
     // v is no longer a valid vertex descriptor
@@ -70,22 +70,22 @@ void modify_demo(MutableGraph& g)
     v = add_vertex(g);
 
     std::pair<edge_descriptor, bool> p = add_edge(u, v, g);
-  
+
     assert(num_edges(g) == m + 1);
     assert(p.second == true); // edge should have been added
     assert(source(p.first, g) == u);
     assert(target(p.first, g) == v);
-    assert(p.first == *std::find(out_edges(u, g).first, 
+    assert(p.first == *std::find(out_edges(u, g).first,
                                  out_edges(u, g).second, p.first));
-    assert(p.first == *std::find(in_edges(v, g).first, 
+    assert(p.first == *std::find(in_edges(v, g).first,
                                  in_edges(v, g).second, p.first));
   }
   {
     // use tie() for convenience, avoid using the std::pair
-    
+
     u = add_vertex(g);
     v = add_vertex(g);
-    
+
     boost::tie(e, added) = add_edge(u, v, g);
 
     assert(num_edges(g) == m + 2);
@@ -124,7 +124,7 @@ void modify_demo(MutableGraph& g)
     boost::tie(iter, iter_end) = out_edges(u, g);
 
     remove_edge(iter, g);
-    
+
     assert(num_edges(g) == m);
     assert(out_degree(u, g) == 0);
     assert(in_degree(v, g) == 0);
@@ -135,16 +135,16 @@ void modify_demo(MutableGraph& g)
     boost::tie(e2, added) = add_edge(v, w, g);
     name_map[e1] = "I-5";
     name_map[e2] = "Route 66";
-    
+
     typename GraphTraits::out_edge_iterator iter, iter_end;
     boost::tie(iter, iter_end) = out_edges(u, g);
 
     remove_edge_if(name_equals("Route 66", name_map), g);
-    
+
     assert(num_edges(g) == m + 1);
 
     remove_edge_if(name_equals("I-5", name_map), g);
-    
+
     assert(num_edges(g) == m);
     assert(out_degree(u, g) == 0);
     assert(out_degree(v, g) == 0);
@@ -156,9 +156,9 @@ void modify_demo(MutableGraph& g)
     boost::tie(e2, added) = add_edge(u, w, g);
     name_map[e1] = "foo";
     name_map[e2] = "foo";
-    
+
     remove_out_edge_if(u, name_equals("foo", name_map), g);
-    
+
     assert(num_edges(g) == m);
     assert(out_degree(u, g) == 0);
   }
@@ -167,9 +167,9 @@ void modify_demo(MutableGraph& g)
     boost::tie(e2, added) = add_edge(w, v, g);
     name_map[e1] = "bar";
     name_map[e2] = "bar";
-    
+
     remove_in_edge_if(v, name_equals("bar", name_map), g);
-    
+
     assert(num_edges(g) == m);
     assert(in_degree(v, g) == 0);
   }
@@ -180,9 +180,9 @@ void modify_demo(MutableGraph& g)
     add_edge(v, u, g);
 
     clear_vertex(u, g);
-    
+
     assert(out_degree(u, g) == 0);
-    
+
     for (boost::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi) {
       typename GraphTraits::adjacency_iterator ai, ai_end;
       for (boost::tie(ai, ai_end) = adjacent_vertices(*vi, g);

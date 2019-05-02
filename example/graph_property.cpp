@@ -1,4 +1,4 @@
-//  (C) Copyright Jeremy Siek 2004 
+//  (C) Copyright Jeremy Siek 2004
 //  Distributed under the Boost Software License, Version 1.0. (See
 //  accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
@@ -15,7 +15,7 @@ main()
   using namespace boost;
   using std::string;
 
-  typedef adjacency_list<vecS, vecS, directedS,no_property, 
+  typedef adjacency_list<vecS, vecS, directedS,no_property,
     property<edge_index_t, int>,
     property<graph_name_t, string> > graph_t;
 
@@ -30,6 +30,6 @@ main()
   get_property(sg, graph_name) = "subgraph";
 
   std::cout << "name: " << get_property(sg, graph_name) << std::endl;
-  
+
   return exit_success;
 }

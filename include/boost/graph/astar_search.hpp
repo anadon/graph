@@ -443,13 +443,13 @@ namespace boost {
     null_visitor null_vis;
     astar_visitor<null_visitor> default_visitor(null_vis);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::visitor,
         dummy_property_map&
     >::type vis = arg_pack[_visitor | default_visitor];
     dummy_property_map dummy_prop;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::predecessor_map,
         dummy_property_map&
     >::type pred_map = arg_pack[_predecessor_map | dummy_prop];
@@ -488,13 +488,13 @@ namespace boost {
     >::map_type c_map = boost::detail::make_color_map_from_arg_pack(g, arg_pack);
     std::less<D> default_compare;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_compare,
         std::less<D>&
     >::type dist_comp = arg_pack[_distance_compare | default_compare];
     closed_plus<D> default_combine(inf);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_combine,
         closed_plus<D>&
     >::type dist_comb = arg_pack[_distance_combine | default_combine];
@@ -541,13 +541,13 @@ namespace boost {
     null_visitor null_vis;
     astar_visitor<null_visitor> default_visitor(null_vis);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::visitor,
         dummy_property_map&
     >::type vis = arg_pack[_visitor | default_visitor];
     dummy_property_map dummy_prop;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::predecessor_map,
         dummy_property_map&
     >::type pred_map = arg_pack[_predecessor_map | dummy_prop];
@@ -574,13 +574,13 @@ namespace boost {
     weight_map_type w_map = detail::override_const_property(arg_pack, _weight_map, g, edge_weight);
     std::less<D> default_compare;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_compare,
         std::less<D>&
     >::type dist_comp = arg_pack[_distance_compare | default_compare];
     closed_plus<D> default_combine(inf);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_combine,
         closed_plus<D>&
     >::type dist_comb = arg_pack[_distance_combine | default_combine];
@@ -622,13 +622,13 @@ namespace boost {
     null_visitor null_vis;
     astar_visitor<null_visitor> default_visitor(null_vis);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::visitor,
         dummy_property_map&
     >::type vis = arg_pack[_visitor | default_visitor];
     dummy_property_map dummy_prop;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::predecessor_map,
         dummy_property_map&
     >::type pred_map = arg_pack[_predecessor_map | dummy_prop];
@@ -667,13 +667,13 @@ namespace boost {
     >::type v_i_map = detail::override_const_property(arg_pack, _vertex_index_map, g, vertex_index);
     std::less<D> default_compare;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_compare,
         std::less<D>&
     >::type dist_comp = arg_pack[_distance_compare | default_compare];
     closed_plus<D> default_combine(inf);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_combine,
         closed_plus<D>&
     >::type dist_comb = arg_pack[_distance_combine | default_combine];
@@ -717,13 +717,13 @@ namespace boost {
     null_visitor null_vis;
     astar_visitor<null_visitor> default_visitor(null_vis);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::visitor,
         dummy_property_map&
     >::type vis = arg_pack[_visitor | default_visitor];
     dummy_property_map dummy_prop;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::predecessor_map,
         dummy_property_map&
     >::type pred_map = arg_pack[_predecessor_map | dummy_prop];
@@ -750,13 +750,13 @@ namespace boost {
     weight_map_type w_map = detail::override_const_property(arg_pack, _weight_map, g, edge_weight);
     std::less<D> default_compare;
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_compare,
         std::less<D>&
     >::type dist_comp = arg_pack[_distance_compare | default_compare];
     closed_plus<D> default_combine(inf);
     typename boost::parameter::binding<
-        arg_pack_type, 
+        arg_pack_type,
         boost::graph::keywords::tag::distance_combine,
         closed_plus<D>&
     >::type dist_comb = arg_pack[_distance_combine | default_combine];

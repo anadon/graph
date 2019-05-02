@@ -46,7 +46,7 @@ class print_tree_visitor : public boost::dfs_visitor<>
 public:
   print_tree_visitor(VertexNameMap n, DistanceMap d) : name(n), distance(d) { }
   template <class Graph>
-  void 
+  void
   discover_vertex(typename boost::graph_traits<Graph>::vertex_descriptor v,
             Graph&)
   {
@@ -62,7 +62,7 @@ public:
                  Graph& g)
   {
     distance[boost::target(e, g)] = distance[boost::source(e, g)] + 1;
-  }  
+  }
 
 private:
   VertexNameMap name;
@@ -83,8 +83,8 @@ main(int argc, const char** argv)
   //===========================================================================
   // Declare the graph type and object, and some property maps.
 
-  typedef adjacency_list<vecS, vecS, directedS, 
-    property<vertex_name_t, std::string, 
+  typedef adjacency_list<vecS, vecS, directedS,
+    property<vertex_name_t, std::string,
       property<vertex_color_t, default_color_type> >,
     property<edge_name_t, std::string, property<edge_weight_t, int> >
   > Graph;
@@ -103,14 +103,14 @@ main(int argc, const char** argv)
 
   //===========================================================================
   // Read the data file and construct the graph.
-  
+
   std::string line;
   while (std::getline(datafile,line)) {
 
     std::list<std::string> line_toks;
     boost::stringtok(line_toks, line, "|");
 
-    NameVertexMap::iterator pos; 
+    NameVertexMap::iterator pos;
     bool inserted;
     Vertex u, v;
 
@@ -126,7 +126,7 @@ main(int argc, const char** argv)
     ++i;
 
     std::string hyperlink_name = *i++;
-      
+
     boost::tie(pos, inserted) = name2vertex.insert(std::make_pair(*i, Vertex()));
     if (inserted) {
       v = add_vertex(g);
@@ -162,9 +162,9 @@ main(int argc, const char** argv)
   size_type diameter = 0;
   BOOST_USING_STD_MAX();
   for (i = 0; i < num_vertices(g); ++i)
-    diameter = max BOOST_PREVENT_MACRO_SUBSTITUTION(diameter, *std::max_element(d_matrix[i].begin(), 
+    diameter = max BOOST_PREVENT_MACRO_SUBSTITUTION(diameter, *std::max_element(d_matrix[i].begin(),
                                                     d_matrix[i].end()));
-  
+
   std::cout << "The diameter of the boost web-site graph is " << diameter
             << std::endl << std::endl;
 
@@ -173,7 +173,7 @@ main(int argc, const char** argv)
   for (boost::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi)
     std::cout << d_matrix[0][*vi] << "\t" << node_name[*vi] << std::endl;
   std::cout << std::endl;
-  
+
   //===========================================================================
   // Print out the breadth-first search tree starting at the home page
 
@@ -186,7 +186,7 @@ main(int argc, const char** argv)
   // vertex (where parent is with respect to the search tree).
   Traits::vertex_descriptor src = vertices(g).first[0];
   breadth_first_search
-    (g, src, 
+    (g, src,
      boost::visitor(make_bfs_visitor(record_predecessors(&parent[0],
                                                          on_tree_edge()))));
 
@@ -208,6 +208,6 @@ main(int argc, const char** argv)
   for (boost::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi)
     get(vertex_color, g)[*vi] = white_color;
   depth_first_visit(search_tree, src, tree_printer, get(vertex_color, g));
-  
+
   return EXIT_SUCCESS;
 }

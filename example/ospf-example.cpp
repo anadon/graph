@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -19,9 +19,9 @@ int
 main(int argc, const char** argv)
 {
   using namespace boost;
-  typedef 
+  typedef
     adjacency_list<vecS, vecS, directedS,
-                   property<vertex_name_t, std::string>, 
+                   property<vertex_name_t, std::string>,
                    property<edge_color_t, std::string,
                             property<edge_weight_t, int> >,
                    property<graph_color_t, std::string> >
@@ -69,7 +69,7 @@ main(int argc, const char** argv)
   property_map<Graph, vertex_index_t>::type indexmap = get(vertex_index, g);
   dijkstra_shortest_paths
     (g, router_six, &parent[0], &distance[0], weightmap,
-     indexmap, std::less<int>(), closed_plus<int>(), 
+     indexmap, std::less<int>(), closed_plus<int>(),
      (std::numeric_limits<int>::max)(), 0, default_dijkstra_visitor());
 #else
   dijkstra_shortest_paths(g, router_six, predecessor_map(&parent[0]));

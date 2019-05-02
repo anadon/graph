@@ -17,7 +17,7 @@ int main(int,char*[])
   using namespace boost;
   // Check filtered_graph
   {
-    typedef adjacency_list<vecS, vecS, directedS, 
+    typedef adjacency_list<vecS, vecS, directedS,
       no_property, property<edge_residual_capacity_t, long> > Graph;
     typedef property_map<Graph, edge_residual_capacity_t>::type ResCapMap;
     typedef filtered_graph<Graph, is_residual_edge<ResCapMap> > ResGraph;
@@ -27,12 +27,12 @@ int main(int,char*[])
     BOOST_CONCEPT_ASSERT(( EdgeListGraphConcept<ResGraph> ));
     BOOST_CONCEPT_ASSERT(( IncidenceGraphConcept<ResGraph> ));
     BOOST_CONCEPT_ASSERT(( AdjacencyGraphConcept<ResGraph> ));
-    BOOST_CONCEPT_ASSERT(( PropertyGraphConcept<ResGraph, Edge, 
+    BOOST_CONCEPT_ASSERT(( PropertyGraphConcept<ResGraph, Edge,
       edge_residual_capacity_t> ));
   }
   // Check filtered_graph with bidirectional adjacency_list
   {
-    typedef adjacency_list<vecS, vecS, bidirectionalS, 
+    typedef adjacency_list<vecS, vecS, bidirectionalS,
       no_property, property<edge_residual_capacity_t, long> > Graph;
     typedef property_map<Graph, edge_residual_capacity_t>::type ResCapMap;
     typedef filtered_graph<Graph, is_residual_edge<ResCapMap> > ResGraph;
@@ -40,7 +40,7 @@ int main(int,char*[])
   }
   // Check filtered_graph with undirected adjacency_list
   {
-    typedef adjacency_list<vecS, vecS, undirectedS, 
+    typedef adjacency_list<vecS, vecS, undirectedS,
       no_property, property<edge_residual_capacity_t, long> > Graph;
     typedef property_map<Graph, edge_residual_capacity_t>::type ResCapMap;
     typedef filtered_graph<Graph, is_residual_edge<ResCapMap> > ResGraph;

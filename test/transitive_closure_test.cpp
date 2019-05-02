@@ -25,11 +25,11 @@ void generate_graph(int n, double p, vector< vector<int> >& r1)
     double operator()() {
       return double(rand())/RAND_MAX;
     }
-  } gen;  
+  } gen;
   r1.clear();
   r1.resize(n);
   for (int i = 0; i < n; ++i)
-    for (int j = 0; j < n; ++j) 
+    for (int j = 0; j < n; ++j)
       if (gen() < p)
         r1[i].push_back(j);
 }
@@ -89,7 +89,7 @@ bool check_transitive_closure(Graph& g, GraphTC& tc)
               std::cout << "2. " << *i << std::endl;
               return false;
             }
-          }       
+          }
         }
       } else {
         std::vector<default_color_type> color_map_vec(num_vertices(g));
@@ -140,7 +140,7 @@ int main()
     double operator()() {
       return double(rand())/RAND_MAX;
     }
-  } gen;  
+  } gen;
 
 
   for (size_t i = 0; i < 100; ++i) {
@@ -148,7 +148,7 @@ int main()
     double p = gen();
     if (!test(n, p)) {
       cout << "Failed." << endl;
-      return 1; 
+      return 1;
     }
   }
   cout << "Passed." << endl;

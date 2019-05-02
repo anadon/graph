@@ -57,10 +57,10 @@ int main(int argc, char* argv[])
   //   a separate field for marking colors, so we use the w field.
 
   std::vector<int> comp(num_vertices(g));
-  property_map<Graph*, vertex_index_t>::type 
+  property_map<Graph*, vertex_index_t>::type
     index_map = get(vertex_index, g);
 
-  property_map<Graph*, v_property<vertex_t> >::type 
+  property_map<Graph*, v_property<vertex_t> >::type
     root = get(v_property<vertex_t>(), g);
 
   int num_comp = strong_components

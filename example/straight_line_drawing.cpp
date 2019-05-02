@@ -38,14 +38,14 @@ int main(int argc, char** argv)
       property<vertex_index_t, int>
     > graph;
 
-  
+
 
   //Define the storage type for the planar embedding
-  typedef std::vector< std::vector< graph_traits<graph>::edge_descriptor > > 
+  typedef std::vector< std::vector< graph_traits<graph>::edge_descriptor > >
     embedding_storage_t;
   typedef boost::iterator_property_map
-    < embedding_storage_t::iterator, 
-      property_map<graph, vertex_index_t>::type 
+    < embedding_storage_t::iterator,
+      property_map<graph, vertex_index_t>::type
     >
     embedding_t;
 
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
   // make_connected, make_biconnected_planar, and make_maximal planar in
   // sequence to add a set of edges to any undirected planar graph to make
   // it maximal planar.
-  
+
   graph g(7);
   add_edge(0,1,g);
   add_edge(1,2,g);
@@ -96,28 +96,28 @@ int main(int argc, char** argv)
   //Set up a property map to hold the mapping from vertices to coord_t's
   typedef std::vector< coord_t > straight_line_drawing_storage_t;
   typedef boost::iterator_property_map
-    < straight_line_drawing_storage_t::iterator, 
-      property_map<graph, vertex_index_t>::type 
+    < straight_line_drawing_storage_t::iterator,
+      property_map<graph, vertex_index_t>::type
     >
     straight_line_drawing_t;
 
   straight_line_drawing_storage_t straight_line_drawing_storage
     (num_vertices(g));
   straight_line_drawing_t straight_line_drawing
-    (straight_line_drawing_storage.begin(), 
+    (straight_line_drawing_storage.begin(),
      get(vertex_index,g)
      );
 
 
 
   // Compute the straight line drawing
-  chrobak_payne_straight_line_drawing(g, 
-                                      embedding, 
+  chrobak_payne_straight_line_drawing(g,
+                                      embedding,
                                       ordering.begin(),
                                       ordering.end(),
                                       straight_line_drawing
                                       );
-  
+
 
 
   std::cout << "The straight line drawing is: " << std::endl;
@@ -125,7 +125,7 @@ int main(int argc, char** argv)
   for(boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
     {
       coord_t coord(get(straight_line_drawing,*vi));
-      std::cout << *vi << " -> (" << coord.x << ", " << coord.y << ")" 
+      std::cout << *vi << " -> (" << coord.x << ", " << coord.y << ")"
                 << std::endl;
     }
 

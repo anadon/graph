@@ -32,7 +32,7 @@ int main() {
   // Vertex properties
   typedef property < vertex_name_t, string,
             property < vertex_label_t, string,
-              property < vertex_root_t, int > > > vertex_p;  
+              property < vertex_root_t, int > > > vertex_p;
   // Edge properties
   typedef property < edge_name_t, string > edge_p;
   // Graph properties
@@ -63,17 +63,17 @@ int main() {
   dp.property("label",elabel);
 
   // Use ref_property_map to turn a graph property into a property map
-  ref_property_map<graph_t*,string> 
+  ref_property_map<graph_t*,string>
     gname(get_property(graph,graph_name));
   dp.property("name",gname);
 
   // Use ref_property_map to turn a graph property into a property map
-  ref_property_map<graph_t*,string> 
+  ref_property_map<graph_t*,string>
     gid(get_property(graph,graph_identifier_t()));
   dp.property("identifier",gid);
   // Sample graph as an istream;
 
-const char* dot = 
+const char* dot =
 "digraph \
 { \
   graph [name=\"GRAPH\", identifier=\"CX2A1Z\"] \

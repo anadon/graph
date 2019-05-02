@@ -34,7 +34,7 @@ using namespace boost;
 enum { a, b, c, d, e, f, g, h };
 enum { _1, _2, _3, _4, _5, _6, _7, _8 };
 
-void test_isomorphism() 
+void test_isomorphism()
 {
   typedef adjacency_list<vecS, vecS, bidirectionalS> GraphA;
   typedef adjacency_list<vecS, vecS, bidirectionalS> GraphB;
@@ -73,7 +73,7 @@ void test_isomorphism()
   add_edge(_7, _8, Gb);
   add_edge(_8, _1, Gb);
   add_edge(_8, _7, Gb);
-  
+
 
   std::vector<std::size_t> in_degree_A(num_vertices(Ga));
   boost::detail::compute_in_degree(Ga, &in_degree_A[0]);
@@ -81,21 +81,21 @@ void test_isomorphism()
   std::vector<std::size_t> in_degree_B(num_vertices(Gb));
   boost::detail::compute_in_degree(Gb, &in_degree_B[0]);
 
-  degree_vertex_invariant<std::size_t*, GraphA> 
+  degree_vertex_invariant<std::size_t*, GraphA>
     invariantA(&in_degree_A[0], Ga);
-  degree_vertex_invariant<std::size_t*, GraphB> 
+  degree_vertex_invariant<std::size_t*, GraphB>
     invariantB(&in_degree_B[0], Gb);
 
   std::vector<graph_traits<GraphB>::vertex_descriptor> f(num_vertices(Ga));
 
-  bool ret = isomorphism(Ga, Gb, &f[0], invariantA, invariantB, 
+  bool ret = isomorphism(Ga, Gb, &f[0], invariantA, invariantB,
                          (invariantB.max)(),
                          get(vertex_index, Ga), get(vertex_index, Gb));
   assert(ret == true);
 
   for (std::size_t i = 0; i < num_vertices(Ga); ++i)
     std::cout << "f(" << a_names[i] << ")=" << b_names[f[i]] << std::endl;
-  
+
   BOOST_TEST(verify_isomorphism(Ga, Gb, &f[0]));
 }
 

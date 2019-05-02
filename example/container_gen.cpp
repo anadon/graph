@@ -20,20 +20,20 @@ namespace boost {
     typedef std::list<ValueType, Allocator> type;
   };
   template <class Alloc>
-  struct parallel_edge_traits< list_with_allocatorS<Alloc> > { 
+  struct parallel_edge_traits< list_with_allocatorS<Alloc> > {
     typedef allow_parallel_edge_tag type;
   };
 
 }
 
-// now you can define a graph using std::list and a specific allocator  
+// now you can define a graph using std::list and a specific allocator
 typedef boost::adjacency_list< list_with_allocatorS< std::allocator<int> >,
   boost::vecS, boost::directedS> MyGraph;
 
 int main(int, char*[])
 {
   MyGraph g(5);
-  
+
   return 0;
 }
 

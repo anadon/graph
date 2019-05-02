@@ -84,7 +84,7 @@ int main(int argc, char **argv)
       tree_collector,
       inL
     );
-  
+
   std::vector< std::vector<bool> >::iterator it;
   for(it = coll.begin(); it != coll.end(); ++it) {
     // Here you can play with the trees that the algorithm has found.

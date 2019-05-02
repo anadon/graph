@@ -81,10 +81,10 @@ bool check_vertex_cleared(Graph& g, Vertex v, ID id)
 }
 
 template <class Graph, class Edge, class EdgeID>
-bool check_edge_added(Graph& g, Edge e, 
-                      typename graph_traits<Graph>::vertex_descriptor a, 
-                      typename graph_traits<Graph>::vertex_descriptor b, 
-                      EdgeID edge_id, std::size_t correct_id, 
+bool check_edge_added(Graph& g, Edge e,
+                      typename graph_traits<Graph>::vertex_descriptor a,
+                      typename graph_traits<Graph>::vertex_descriptor b,
+                      EdgeID edge_id, std::size_t correct_id,
                       bool inserted)
 {
   if (! (source(e, g) == a)) {
@@ -164,7 +164,7 @@ int main(int, char* [])
 
   // also need to test EdgeIterator graph constructor -JGS
   mt19937 gen;
-    
+
   for (j=0; j < 10; ++j) {
 
     // add_edge
@@ -178,7 +178,7 @@ int main(int, char* [])
         b = random_vertex(g, gen);
       } while ( a == b ); // don't do self edges
 #if VERBOSE
-      cerr << "add_edge(" << vertex_id_map[a] << "," << vertex_id_map[b] <<")" << endl; 
+      cerr << "add_edge(" << vertex_id_map[a] << "," << vertex_id_map[b] <<")" << endl;
 #endif
       Edge e;
       bool inserted;
@@ -193,7 +193,7 @@ int main(int, char* [])
       std::cout << "finished printing" << std::endl;
       //      print_in_edges(g, vertex_id_map);
 #endif
-      if (! check_edge_added(g, e, a, b, edge_id_map, 
+      if (! check_edge_added(g, e, a, b, edge_id_map,
                              current_edge_id - 1, inserted)) {
         ret = -1;
         break;
@@ -210,7 +210,7 @@ int main(int, char* [])
       print_edges(g, vertex_id_map);
 #endif
       Vertex a, b;
-      
+
       Edge e = random_edge(g, gen);
       boost::tie(a,b) = boost::incident(e, g);
       --E;
@@ -319,7 +319,7 @@ int main(int, char* [])
       boost::tie(e,e_end) = out_edges(vid,g);
       if (e != e_end) {
 #if VERBOSE
-        cerr << "   Failed, " << vertex_id_map[vid] 
+        cerr << "   Failed, " << vertex_id_map[vid]
              << " should not have any out-edges yet" << endl;
 #endif
         ret = -1;
@@ -328,7 +328,7 @@ int main(int, char* [])
       boost::tie(e,e_end) = out_edges(vidp1,g);
       if (e != e_end) {
 #if VERBOSE
-        cerr << "   Failed, " << vertex_id_map[vidp1] 
+        cerr << "   Failed, " << vertex_id_map[vidp1]
              << " should not have any out-edges yet" << endl;
 #endif
         ret = -1;
@@ -369,7 +369,7 @@ int main(int, char* [])
       break;
     } else {
 #if VERBOSE
-      cerr << "           Passed."<< endl;      
+      cerr << "           Passed."<< endl;
 #endif
     }
     // add_edge again
@@ -381,13 +381,13 @@ int main(int, char* [])
       Vertex a = random_vertex(g, gen), b = random_vertex(g, gen);
       while ( a == vid ) a = random_vertex(g, gen);
       while ( b == vidp1 ) b = random_vertex(g, gen);
-      Edge e; 
+      Edge e;
       bool inserted;
 #if VERBOSE
       cerr << "add_edge(" << vertex_id_map[vid] << "," << vertex_id_map[a] <<")" << endl;
 #endif
       boost::tie(e,inserted) = add_edge(vid, a, EdgeID(current_edge_id++), g);
-      
+
       if (! check_edge_added(g, e, vid, a, edge_id_map, current_edge_id - 1,
                              inserted)) {
         ret = -1;
@@ -403,13 +403,13 @@ int main(int, char* [])
         edge_id_map[e] = current_edge_id;
       ++current_edge_id;
 
-      if (! check_edge_added(g, e, b, vidp1, edge_id_map, 
+      if (! check_edge_added(g, e, b, vidp1, edge_id_map,
                              current_edge_id - 1, inserted)) {
         ret = -1;
         break;
       }
     }
-    
+
     // clear_vertex
     Vertex c = random_vertex(g, gen);
 #if VERBOSE
@@ -423,7 +423,7 @@ int main(int, char* [])
     print_graph(g, vertex_id_map);
     //    print_in_edges(g, vertex_id_map);
     print_edges(g, vertex_id_map);
-#endif  
+#endif
     if (check_vertex_cleared(g, c, vertex_id_map) && num_edges(g) == count_edges(g)) {
 #if VERBOSE
       cerr << " Passed."<< endl;
@@ -473,7 +473,7 @@ int main(int, char* [])
 #endif
     } else {
 #if VERBOSE
-      cerr << "           Passed."<< endl;      
+      cerr << "           Passed."<< endl;
 #endif
     }
   }

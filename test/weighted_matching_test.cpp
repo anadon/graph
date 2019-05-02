@@ -38,7 +38,7 @@ struct vertex_index_installer<undirected_list_graph>
     {
         typedef graph_traits<undirected_list_graph>::vertex_iterator vertex_iterator_t;
         typedef graph_traits<undirected_list_graph>::vertices_size_type v_size_t;
-        
+
         vertex_iterator_t vi, vi_end;
         v_size_t i = 0;
         for (boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi, ++i)
@@ -57,7 +57,7 @@ void print_graph(const Graph& g)
 }
 
 template <typename Graph>
-void weighted_matching_test(const Graph& g, 
+void weighted_matching_test(const Graph& g,
                             typename property_traits<typename property_map<Graph, edge_weight_t>::type>::value_type answer)
 {
     typedef typename property_map<Graph,vertex_index_t>::type vertex_index_map_t;
@@ -73,28 +73,28 @@ void weighted_matching_test(const Graph& g,
 
         std::cout << std::endl << "Found a weighted matching of weight sum " << matching_weight_sum(g, mate) << std::endl
         << "While brute-force search found a weighted matching of weight sum " << matching_weight_sum(g, max_mate) << std::endl;
-        
+
         typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator_t;
         vertex_iterator_t vi, vi_end;
-        
+
         print_graph(g);
-        
+
         std::cout << std::endl << "The algorithmic matching is:" << std::endl;
         for (boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
             if (mate[*vi] != graph_traits<Graph>::null_vertex() && *vi < mate[*vi])
                 std::cout << "{" << *vi << ", " << mate[*vi] << "}" << std::endl;
-        
+
         std::cout << std::endl << "The brute-force matching is:" << std::endl;
         for (boost::tie(vi,vi_end) = vertices(g); vi != vi_end; ++vi)
             if (max_mate[*vi] != graph_traits<Graph>::null_vertex() && *vi < max_mate[*vi])
                 std::cout << "{" << *vi << ", " << max_mate[*vi] << "}" << std::endl;
-        
+
         std::cout << std::endl;
     }
 }
 
 template <typename Graph>
-Graph make_graph(typename graph_traits<Graph>::vertices_size_type num_v, 
+Graph make_graph(typename graph_traits<Graph>::vertices_size_type num_v,
                  typename graph_traits<Graph>::edges_size_type num_e,
                  std::deque<std::size_t> input_edges)
 {
@@ -128,7 +128,7 @@ int test_main(int, char*[])
         std::size_t i;
         while (in_graph >> i)
             input_edges.push_back(i);
-        
+
         weighted_matching_test(make_graph<undirected_graph>(num_v, num_e, input_edges), answer);
         weighted_matching_test(make_graph<undirected_list_graph>(num_v, num_e, input_edges), answer);
         weighted_matching_test(make_graph<undirected_adjacency_matrix_graph>(num_v, num_e, input_edges), answer);

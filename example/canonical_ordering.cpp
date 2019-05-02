@@ -29,7 +29,7 @@ int main(int argc, char** argv)
       undirectedS,
       property<vertex_index_t, int>,
       property<edge_index_t, int>
-    > 
+    >
     graph;
 
   // Create a maximal planar graph on 6 vertices
@@ -56,14 +56,14 @@ int main(int argc, char** argv)
   graph_traits<graph>::edge_iterator ei, ei_end;
   for(boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei)
     put(e_index, *ei, edge_count++);
-  
 
-  // Test for planarity - we know it is planar, we just want to 
+
+  // Test for planarity - we know it is planar, we just want to
   // compute the planar embedding as a side-effect
   typedef std::vector< graph_traits<graph>::edge_descriptor > vec_t;
   std::vector<vec_t> embedding(num_vertices(g));
   if (boyer_myrvold_planarity_test(boyer_myrvold_params::graph = g,
-                                   boyer_myrvold_params::embedding = 
+                                   boyer_myrvold_params::embedding =
                                        make_iterator_property_map(
                                          embedding.begin(), get(vertex_index, g))
                                    )
@@ -72,9 +72,9 @@ int main(int argc, char** argv)
   else
     std::cout << "Input graph is not planar" << std::endl;
 
-  typedef std::vector<graph_traits<graph>::vertex_descriptor> 
+  typedef std::vector<graph_traits<graph>::vertex_descriptor>
     ordering_storage_t;
-  
+
   ordering_storage_t ordering;
   planar_canonical_ordering(g,
                             make_iterator_property_map(
@@ -88,5 +88,5 @@ int main(int argc, char** argv)
     std::cout << *oi << " ";
   std::cout << std::endl;
 
-  return 0;  
+  return 0;
 }

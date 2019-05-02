@@ -21,7 +21,7 @@ using namespace boost;
 
 
 
-// Some planar face traversal visitors that will 
+// Some planar face traversal visitors that will
 // print the vertices and edges on the faces
 
 struct output_visitor : public planar_face_traversal_visitor
@@ -34,10 +34,10 @@ struct output_visitor : public planar_face_traversal_visitor
 
 struct vertex_output_visitor : public output_visitor
 {
-  template <typename Vertex> 
-  void next_vertex(Vertex v) 
-  { 
-    std::cout << v << " "; 
+  template <typename Vertex>
+  void next_vertex(Vertex v)
+  {
+    std::cout << v << " ";
   }
 };
 
@@ -45,10 +45,10 @@ struct vertex_output_visitor : public output_visitor
 
 struct edge_output_visitor : public output_visitor
 {
-  template <typename Edge> 
-  void next_edge(Edge e) 
-  { 
-    std::cout << e << " "; 
+  template <typename Edge>
+  void next_edge(Edge e)
+  {
+    std::cout << e << " ";
   }
 };
 
@@ -62,7 +62,7 @@ int main(int argc, char** argv)
       undirectedS,
       property<vertex_index_t, int>,
       property<edge_index_t, int>
-    > 
+    >
     graph;
 
   // Create a graph - this is a biconnected, 3 x 3 grid.
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 
   add_edge(3,4,g);
   add_edge(4,5,g);
-  
+
   add_edge(6,7,g);
   add_edge(7,8,g);
 
@@ -88,7 +88,7 @@ int main(int argc, char** argv)
 
   add_edge(2,5,g);
   add_edge(5,8,g);
-  
+
 
   // Initialize the interior edge index
   property_map<graph, edge_index_t>::type e_index = get(edge_index, g);
@@ -96,14 +96,14 @@ int main(int argc, char** argv)
   graph_traits<graph>::edge_iterator ei, ei_end;
   for(boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei)
     put(e_index, *ei, edge_count++);
-  
 
-  // Test for planarity - we know it is planar, we just want to 
+
+  // Test for planarity - we know it is planar, we just want to
   // compute the planar embedding as a side-effect
   typedef std::vector< graph_traits<graph>::edge_descriptor > vec_t;
   std::vector<vec_t> embedding(num_vertices(g));
   if (boyer_myrvold_planarity_test(boyer_myrvold_params::graph = g,
-                                   boyer_myrvold_params::embedding = 
+                                   boyer_myrvold_params::embedding =
                                        &embedding[0]
                                    )
       )
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
   else
     std::cout << "Input graph is not planar" << std::endl;
 
-  
+
   std::cout << std::endl << "Vertices on the faces: " << std::endl;
   vertex_output_visitor v_vis;
   planar_face_traversal(g, &embedding[0], v_vis);
@@ -120,5 +120,5 @@ int main(int argc, char** argv)
   edge_output_visitor e_vis;
   planar_face_traversal(g, &embedding[0], e_vis);
 
-  return 0;  
+  return 0;
 }

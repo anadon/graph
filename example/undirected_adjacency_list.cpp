@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -94,10 +94,10 @@ undirected_graph_demo2()
 
   std::cout << "the edges incident to v: ";
   typename boost::graph_traits<UndirectedGraph>::out_edge_iterator e, e_end;
-  typename boost::graph_traits<UndirectedGraph>::vertex_descriptor 
+  typename boost::graph_traits<UndirectedGraph>::vertex_descriptor
     s = vertex(0, undigraph);
   for (boost::tie(e, e_end) = out_edges(s, undigraph); e != e_end; ++e)
-    std::cout << "(" << source(*e, undigraph) 
+    std::cout << "(" << source(*e, undigraph)
               << "," << target(*e, undigraph) << ")" << std::endl;
 }
 

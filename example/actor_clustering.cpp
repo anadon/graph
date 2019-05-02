@@ -64,7 +64,7 @@ void load_actor_graph(std::istream& in, ActorGraph& g)
 
     for (std::vector<Vertex>::iterator i = actors_in_movie.begin();
          i != actors_in_movie.end(); ++i) {
-      for (std::vector<Vertex>::iterator j = i + 1; 
+      for (std::vector<Vertex>::iterator j = i + 1;
            j != actors_in_movie.end(); ++j) {
         if (!edge(*i, *j, g).second) add_edge(*i, *j, g);
       }
@@ -73,8 +73,8 @@ void load_actor_graph(std::istream& in, ActorGraph& g)
 }
 
 template<typename Graph, typename VertexIndexMap, typename VertexNameMap>
-std::ostream& 
-write_pajek_graph(std::ostream& out, const Graph& g, 
+std::ostream&
+write_pajek_graph(std::ostream& out, const Graph& g,
                   VertexIndexMap vertex_index, VertexNameMap vertex_name)
 {
   out << "*Vertices " << num_vertices(g) << '\n';
@@ -86,7 +86,7 @@ write_pajek_graph(std::ostream& out, const Graph& g,
   out << "*Edges\n";
   typedef typename graph_traits<Graph>::edge_iterator edge_iterator;
   for (edge_iterator e = edges(g).first; e != edges(g).second; ++e) {
-    out << get(vertex_index, source(*e, g))+1 << ' ' 
+    out << get(vertex_index, source(*e, g))+1 << ' '
         << get(vertex_index, target(*e, g))+1 << " 1.0\n"; // HACK!
   }
   return out;
@@ -103,7 +103,7 @@ class actor_clustering_threshold : public bc_clustering_threshold<double>
 
   bool operator()(double max_centrality, Edge e, const ActorGraph& g)
   {
-    std::cout << "Iter: " << iter << " Max Centrality: " 
+    std::cout << "Iter: " << iter << " Max Centrality: "
               << (max_centrality / dividend) << std::endl;
     ++iter;
     return inherited::operator()(max_centrality, e, g);
@@ -169,8 +169,8 @@ int main(int argc, char* argv[])
 
   // Run the algorithm
   std::cout << "Clusting..." << std::endl;
-  betweenness_centrality_clustering(g, 
-    actor_clustering_threshold(threshold, g, normalize), 
+  betweenness_centrality_clustering(g,
+    actor_clustering_threshold(threshold, g, normalize),
     get(edge_centrality, g));
 
   // Output the graph

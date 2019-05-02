@@ -35,7 +35,7 @@ int main(int argc, char** argv)
   if (boyer_myrvold_planarity_test(K_4))
     std::cout << "K_4 is planar." << std::endl;
   else
-    std::cout << "ERROR! K_4 should have been recognized as planar!" 
+    std::cout << "ERROR! K_4 should have been recognized as planar!"
           << std::endl;
 
   graph K_5(5);
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 
   // Now add the final edge...
   add_edge(3, 4, K_5);
-  
+
   if (boyer_myrvold_planarity_test(K_5))
     std::cout << "ERROR! K_5 was recognized as planar!" << std::endl;
   else

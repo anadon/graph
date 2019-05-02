@@ -207,14 +207,14 @@ scale_graph(const Graph& g, PositionMap position, const Topology& topology,
 
 namespace detail {
   template<typename Topology, typename PropMap, typename Vertex>
-  void 
+  void
   maybe_jitter_point(const Topology& topology,
                      const PropMap& pm, Vertex v,
                      const typename Topology::point_type& p2)
   {
     double too_close = topology.norm(topology.extent()) / 10000.;
     if (topology.distance(get(pm, v), p2) < too_close) {
-      put(pm, v, 
+      put(pm, v,
           topology.move_position_toward(get(pm, v), 1./200,
                                         topology.random_point()));
     }
@@ -269,7 +269,7 @@ namespace detail {
 
 } // end namespace detail
 
-template<typename Topology, typename Graph, typename PositionMap, 
+template<typename Topology, typename Graph, typename PositionMap,
          typename AttractiveForce, typename RepulsiveForce,
          typename ForcePairs, typename Cooling, typename DisplacementMap>
 void
@@ -341,7 +341,7 @@ namespace detail {
   template<typename DisplacementMap>
   struct fr_force_directed_layout
   {
-    template<typename Topology, typename Graph, typename PositionMap, 
+    template<typename Topology, typename Graph, typename PositionMap,
              typename AttractiveForce, typename RepulsiveForce,
              typename ForcePairs, typename Cooling,
              typename Param, typename Tag, typename Rest>
@@ -365,7 +365,7 @@ namespace detail {
   template<>
   struct fr_force_directed_layout<param_not_found>
   {
-    template<typename Topology, typename Graph, typename PositionMap, 
+    template<typename Topology, typename Graph, typename PositionMap,
              typename AttractiveForce, typename RepulsiveForce,
              typename ForcePairs, typename Cooling,
              typename Param, typename Tag, typename Rest>
@@ -407,7 +407,7 @@ fruchterman_reingold_force_directed_layout
   typedef typename get_param_type<vertex_displacement_t, bgl_named_params<Param,Tag,Rest> >::type D;
 
   detail::fr_force_directed_layout<D>::run
-    (g, position, topology, 
+    (g, position, topology,
      choose_param(get_param(params, attractive_force_t()),
                   square_distance_attractive_force()),
      choose_param(get_param(params, repulsive_force_t()),

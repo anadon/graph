@@ -37,7 +37,7 @@
   3 vertices at distance 14,
   1 vertices at distance 15.
   So the diameter is 15, and the girth is 9.
-  
+
  */
 
 #include <boost/config.hpp>
@@ -94,13 +94,13 @@ int
 main()
 {
   std::cout <<
-    "This program explores the girth and diameter of Ramanujan graphs." 
+    "This program explores the girth and diameter of Ramanujan graphs."
             << std::endl;
   std::cout <<
-    "The bipartite graphs have q^3-q vertices, and the non-bipartite" 
+    "The bipartite graphs have q^3-q vertices, and the non-bipartite"
             << std::endl;
-  std::cout << 
-    "graphs have half that number. Each vertex has degree p+1." 
+  std::cout <<
+    "graphs have half that number. Each vertex has degree p+1."
             << std::endl;
   std::cout << "Both p and q should be odd prime numbers;" << std::endl;
   std::cout << "  or you can try p = 2 with q = 17 or 43." << std::endl;

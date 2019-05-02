@@ -136,7 +136,7 @@ int test_main (int argc, char **argv)
 
   /**
    * Create the graph drawn below.
-   * 
+   *
    *       2 - 1 - 0
    *       |       |
    *   3 - 6 - 5 - 4
@@ -144,7 +144,7 @@ int test_main (int argc, char **argv)
    *  |        7
    *  |       /
    *  8 ---- 9
-   *  
+   *
    **/
 
   E non_bipartite_edges[] = { E (0, 1), E (0, 4), E (1, 2), E (2, 6), E (3, 4), E (3, 8), E (4, 5), E (4, 7), E (5, 6),

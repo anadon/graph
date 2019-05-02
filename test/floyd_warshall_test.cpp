@@ -22,7 +22,7 @@
 using namespace boost;
 
 template<typename T>
-inline const T& my_min(const T& x, const T& y) 
+inline const T& my_min(const T& x, const T& y)
 { return x < y? x : y; }
 
 template<typename Graph>

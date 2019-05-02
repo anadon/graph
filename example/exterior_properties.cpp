@@ -13,24 +13,24 @@
 //
 //  Sample output:
 //
-//    0        --(10, 8)--> 1        
+//    0        --(10, 8)--> 1
 //
-//    1        --(20, 12)--> 4        --(40, 12)--> 3        
-//            <--(10,8)-- 0        <--(20,16)-- 2        
-//    2        --(20, 16)--> 1        
-//            <--(20,16)-- 5        
-//    3        --(40, 12)--> 6        
-//            <--(40,12)-- 1        
-//    4        --(20, 12)--> 7        
-//            <--(20,12)-- 1        
-//    5        --(20, 16)--> 2        
-//            <--(20,16)-- 6        
-//    6        --(20, 16)--> 5         --(10, 8)--> 8        
-//            <--(20,12)-- 7 <--(40,12)-- 3        
-//    7        --(20, 12)--> 6        
-//            <--(20,12)-- 4        
-//    8        
-//            <--(10,8)-- 6        
+//    1        --(20, 12)--> 4        --(40, 12)--> 3
+//            <--(10,8)-- 0        <--(20,16)-- 2
+//    2        --(20, 16)--> 1
+//            <--(20,16)-- 5
+//    3        --(40, 12)--> 6
+//            <--(40,12)-- 1
+//    4        --(20, 12)--> 7
+//            <--(20,12)-- 1
+//    5        --(20, 16)--> 2
+//            <--(20,16)-- 6
+//    6        --(20, 16)--> 5         --(10, 8)--> 8
+//            <--(20,12)-- 7 <--(40,12)-- 3
+//    7        --(20, 12)--> 6
+//            <--(20,12)-- 4
+//    8
+//            <--(10,8)-- 6
 
 
 #include <boost/config.hpp>
@@ -51,11 +51,11 @@ void print_network(Graph& G, Capacity capacity, Flow flow)
     std::cout << *ui << "\t";
 
     for(boost::tie(out, out_end) = boost::out_edges(*ui, G); out != out_end; ++out)
-      std::cout << "--(" << boost::get(capacity, *out) << ", " 
+      std::cout << "--(" << boost::get(capacity, *out) << ", "
            << boost::get(flow, *out) << ")--> " << boost::target(*out,G) << "\t";
     std::cout << std::endl << "\t";
 
-    InEdgeIter in, in_end;    
+    InEdgeIter in, in_end;
     for(boost::tie(in, in_end) = boost::in_edges(*ui, G); in != in_end; ++in)
       std::cout << "<--(" << boost::get(capacity, *in) << "," << boost::get(flow, *in) << ")-- "
            << boost::source(*in, G) << "\t";
@@ -66,17 +66,17 @@ void print_network(Graph& G, Capacity capacity, Flow flow)
 
 int main(int , char* []) {
 
-  typedef boost::adjacency_list<boost::vecS, boost::vecS, 
-    boost::bidirectionalS, boost::no_property, 
+  typedef boost::adjacency_list<boost::vecS, boost::vecS,
+    boost::bidirectionalS, boost::no_property,
     boost::property<boost::edge_index_t, std::size_t> > Graph;
 
   const int num_vertices = 9;
   Graph G(num_vertices);
 
-  /*          2<----5 
+  /*          2<----5
              /       ^
             /         \
-           V           \ 
+           V           \
     0 ---->1---->3----->6--->8
            \           ^
             \         /
@@ -110,6 +110,6 @@ int main(int , char* []) {
   typedef boost::iterator_property_map<int*, EdgeIndexMap, int, int&> IterMap;
 
   print_network(G, IterMap(capacity, edge_id), IterMap(flow, edge_id));
-          
+
   return 0;
 }

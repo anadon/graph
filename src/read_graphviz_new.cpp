@@ -17,7 +17,7 @@
 //   http://www.graphviz.org/doc/info/lang.html
 //   and page 34 or http://www.graphviz.org/pdf/dotguide.pdf
 //
-//   See documentation for this code at: 
+//   See documentation for this code at:
 //     http://www.boost.org/libs/graph/doc/read_graphviz.html
 //
 

@@ -28,11 +28,11 @@
 /*
   Sample output:
 
-  0  --chandler--> 1   --joe--> 1  
-  1  --chandler--> 0   --joe--> 0   --curly--> 2   --dick--> 3   --dick--> 3  
-  2  --curly--> 1   --tom--> 4  
-  3  --dick--> 1   --dick--> 1   --harry--> 4  
-  4  --tom--> 2   --harry--> 3  
+  0  --chandler--> 1   --joe--> 1
+  1  --chandler--> 0   --joe--> 0   --curly--> 2   --dick--> 3   --dick--> 3
+  2  --curly--> 1   --tom--> 4
+  3  --dick--> 1   --dick--> 1   --harry--> 4
+  4  --tom--> 2   --harry--> 3
 
   name(0,1) = chandler
 
@@ -48,7 +48,7 @@ struct order_by_name
   typedef StoredEdge second_argument_type;
   typedef bool result_type;
   bool operator()(const StoredEdge& e1, const StoredEdge& e2) const {
-    // Order by target vertex, then by name. 
+    // Order by target vertex, then by name.
     // std::pair's operator< does a nice job of implementing
     // lexicographical compare on tuples.
     return std::make_pair(e1.get_target(), boost::get(boost::edge_name, e1))
@@ -78,7 +78,7 @@ namespace boost {
 
 namespace boost {
   template <>
-  struct parallel_edge_traits<ordered_set_by_nameS> { 
+  struct parallel_edge_traits<ordered_set_by_nameS> {
     typedef allow_parallel_edge_tag type;
   };
 }
@@ -94,7 +94,7 @@ main()
   typedef adjacency_list<ordered_set_by_nameS, vecS, undirectedS,
     no_property, EdgeProperty> graph_type;
   graph_type g;
-  
+
   add_edge(0, 1, EdgeProperty("joe"), g);
   add_edge(1, 2, EdgeProperty("curly"), g);
   add_edge(1, 3, EdgeProperty("dick"), g);

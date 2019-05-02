@@ -20,18 +20,18 @@
 /*
   Sample output:
 
-  0  --c--> 1   --j--> 1   --c--> 2   --x--> 2  
-  1  --c--> 2   --d--> 3  
-  2  --t--> 4  
-  3  --h--> 4  
-  4 
+  0  --c--> 1   --j--> 1   --c--> 2   --x--> 2
+  1  --c--> 2   --d--> 3
+  2  --t--> 4
+  3  --h--> 4
+  4
 
   merging vertex 1 into vertex 0
 
-  0  --c--> 0   --j--> 0   --c--> 1   --x--> 1   --d--> 2  
-  1  --t--> 3  
-  2  --h--> 3  
-  3 
+  0  --c--> 0   --j--> 0   --c--> 1   --x--> 1   --d--> 2
+  1  --t--> 3
+  2  --h--> 3
+  3
  */
 
 // merge_vertex(u,v,g):
@@ -83,7 +83,7 @@ namespace boost {
     typedef std::set<ValueType, order_by_name<ValueType> > type;
   };
   template <>
-  struct parallel_edge_traits<ordered_set_by_nameS> { 
+  struct parallel_edge_traits<ordered_set_by_nameS> {
     typedef allow_parallel_edge_tag type;
   };
 }
@@ -122,7 +122,7 @@ main()
   add_edge(2, 4, EdgeProperty('t'), g);
   add_edge(3, 4, EdgeProperty('h'), g);
   add_edge(0, 1, EdgeProperty('c'), g);
-  
+
   property_map<graph_type, vertex_index_t>::type id = get(vertex_index, g);
   property_map<graph_type, edge_name_t>::type name = get(edge_name, g);
 
@@ -139,7 +139,7 @@ main()
 
   std::cout << "merging vertex 1 into vertex 0" << std::endl << std::endl;
   merge_vertex(0, 1, g, get_edge_name<graph_type>(g));
-  
+
   for (boost::tie(i, end) = vertices(g); i != end; ++i) {
     std::cout << id[*i] << " ";
     for (boost::tie(ei, edge_end) = out_edges(*i, g); ei != edge_end; ++ei)
@@ -147,6 +147,6 @@ main()
     std::cout << std::endl;
   }
   std::cout << std::endl;
-#endif  
+#endif
   return 0;
 }

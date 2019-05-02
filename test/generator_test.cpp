@@ -55,7 +55,7 @@ int test_main(int argc, char** argv) {
   {
     small_world_iterator<RandomGenerator, Graph> start(gen, N, M, p);
     small_world_iterator<RandomGenerator, Graph> end;
-    
+
     while (start != end) ++start;
 
     BOOST_CHECK(start == end);

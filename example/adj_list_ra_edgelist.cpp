@@ -15,7 +15,7 @@ int
 main()
 {
   using namespace boost;
-  typedef adjacency_list<vecS, vecS, bidirectionalS, no_property, 
+  typedef adjacency_list<vecS, vecS, bidirectionalS, no_property,
     property<int, edge_weight_t>, no_property, vecS> Graph;
 
   const std::size_t n = 3;
@@ -30,6 +30,6 @@ main()
     std::cout << *e << " ";
   }
   std::cout << std::endl;
-  
+
   return 0;
 }

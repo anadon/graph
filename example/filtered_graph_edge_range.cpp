@@ -7,16 +7,16 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //=======================================================================
 
-/* 
+/*
    Sample output:
 
-   filtered edge set: (A,B) (C,D) (D,B) 
+   filtered edge set: (A,B) (C,D) (D,B)
    filtered out-edges:
-   A --> B 
-   B --> 
-   C --> D 
-   D --> B 
-   E --> 
+   A --> B
+   B -->
+   C --> D
+   D --> B
+   E -->
  */
 
 #include <boost/config.hpp>
@@ -40,7 +40,7 @@ struct positive_edge_weight {
 int main()
 {
   using namespace boost;
-  
+
   typedef adjacency_list<multisetS, vecS, directedS,
     no_property, property<edge_weight_t, int> > Graph;
   typedef property_map<Graph, edge_weight_t>::type EdgeWeightMap;
@@ -74,6 +74,6 @@ int main()
   for (boost::tie(first, last) = edge_range(C, D, fg); first != last; ++first)
     std::cout << name[source(*first, fg)] << " --" << weight[*first]
               << "-> " <<  name[target(*first, fg)] << "\n";
-  
+
   return 0;
 }

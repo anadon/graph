@@ -68,8 +68,8 @@ void dump_graph_layout(std::string name, const Graph& g, PositionMap position)
 
   typename graph_traits<Graph>::vertex_iterator vi, vi_end;
   for (boost::tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi) {
-    out << "  n" << get(vertex_index, g, *vi) << "[ pos=\"" 
-        << (int)position[*vi][0] + 25 << ", " << (int)position[*vi][1] + 25 
+    out << "  n" << get(vertex_index, g, *vi) << "[ pos=\""
+        << (int)position[*vi][0] + 25 << ", " << (int)position[*vi][1] + 25
         << "\" ];\n";
   }
 
@@ -82,7 +82,7 @@ void dump_graph_layout(std::string name, const Graph& g, PositionMap position)
 }
 
 template<typename Graph>
-void 
+void
 test_circle_layout(Graph*, typename graph_traits<Graph>::vertices_size_type n)
 {
   typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator;
@@ -92,7 +92,7 @@ test_circle_layout(Graph*, typename graph_traits<Graph>::vertices_size_type n)
 
   // Initialize vertex indices
   vertex_iterator vi = vertices(g).first;
-  for (vertices_size_type i = 0; i < n; ++i, ++vi) 
+  for (vertices_size_type i = 0; i < n; ++i, ++vi)
     put(vertex_index, g, *vi, i);
 
   circle_graph_layout(g, get(vertex_position, g), 10.0);
@@ -107,12 +107,12 @@ struct simple_edge
   int first, second;
 };
 
-struct kamada_kawai_done 
+struct kamada_kawai_done
 {
   kamada_kawai_done() : last_delta() {}
 
   template<typename Graph>
-  bool operator()(double delta_p, 
+  bool operator()(double delta_p,
                   typename boost::graph_traits<Graph>::vertex_descriptor /*p*/,
                   const Graph& /*g*/,
                   bool global)
@@ -138,7 +138,7 @@ test_triangle(Graph*)
   typedef typename graph_traits<Graph>::edge_descriptor edge_descriptor;
 
   Graph g;
-  
+
   vertex_descriptor u = add_vertex(g); put(vertex_index, g, u, 0);
   vertex_descriptor v = add_vertex(g); put(vertex_index, g, v, 1);
   vertex_descriptor w = add_vertex(g); put(vertex_index, g, w, 2);
@@ -149,7 +149,7 @@ test_triangle(Graph*)
 
   circle_graph_layout(g, get(vertex_position, g), 25.0);
 
-  bool ok = kamada_kawai_spring_layout(g, 
+  bool ok = kamada_kawai_spring_layout(g,
                                        get(vertex_position, g),
                                        get(edge_weight, g),
                                        square_topology<>(50.0),
@@ -166,12 +166,12 @@ test_cube(Graph*)
 {
   enum {A, B, C, D, E, F, G, H};
   simple_edge cube_edges[12] = {
-    {A, E}, {A, B}, {A, D}, {B, F}, {B, C}, {C, D}, {C, G}, {D, H}, 
+    {A, E}, {A, B}, {A, D}, {B, F}, {B, C}, {C, D}, {C, G}, {D, H},
     {E, H}, {E, F}, {F, G}, {G, H}
   };
 
   Graph g(&cube_edges[0], &cube_edges[12], 8);
-  
+
   typedef typename graph_traits<Graph>::edge_iterator edge_iterator;
   typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator;
 
@@ -183,7 +183,7 @@ test_cube(Graph*)
   edge_iterator ei, ei_end;
   for (boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei) {
     put(edge_weight, g, *ei, 1.0);
-    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A') 
+    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A')
               << ", " << (char)(get(vertex_index, g, target(*ei, g)) + 'A')
               << ") ";
   }
@@ -191,7 +191,7 @@ test_cube(Graph*)
 
   circle_graph_layout(g, get(vertex_position, g), 25.0);
 
-  bool ok = kamada_kawai_spring_layout(g, 
+  bool ok = kamada_kawai_spring_layout(g,
                                        get(vertex_position, g),
                                        get(edge_weight, g),
                                        square_topology<>(50.0),
@@ -240,7 +240,7 @@ test_triangular(Graph*)
   };
 
   Graph g(&triangular_edges[0], &triangular_edges[18], 10);
-  
+
   typedef typename graph_traits<Graph>::edge_iterator edge_iterator;
   typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator;
 
@@ -252,7 +252,7 @@ test_triangular(Graph*)
   edge_iterator ei, ei_end;
   for (boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei) {
     put(edge_weight, g, *ei, 1.0);
-    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A') 
+    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A')
               << ", " << (char)(get(vertex_index, g, target(*ei, g)) + 'A')
               << ") ";
   }
@@ -268,7 +268,7 @@ test_triangular(Graph*)
 
   circle_graph_layout(g, get(vertex_position, g), 25.0);
 
-  bool ok = kamada_kawai_spring_layout(g, 
+  bool ok = kamada_kawai_spring_layout(g,
                                        get(vertex_position, g),
                                        get(edge_weight, g),
                                        topology,
@@ -306,13 +306,13 @@ test_disconnected(Graph*)
 {
   enum {A, B, C, D, E, F, G, H};
   simple_edge triangular_edges[13] = {
-    {A, B}, {B, C}, {C, A}, 
+    {A, B}, {B, C}, {C, A},
     {D, E}, {E, F}, {F, G}, {G, H}, {H, D},
     {D, F}, {F, H}, {H, E}, {E, G}, {G, D}
   };
 
   Graph g(&triangular_edges[0], &triangular_edges[13], 8);
-  
+
   typedef typename graph_traits<Graph>::edge_iterator edge_iterator;
   typedef typename graph_traits<Graph>::vertex_iterator vertex_iterator;
 
@@ -324,7 +324,7 @@ test_disconnected(Graph*)
   edge_iterator ei, ei_end;
   for (boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei) {
     put(edge_weight, g, *ei, 1.0);
-    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A') 
+    std::cerr << "(" << (char)(get(vertex_index, g, source(*ei, g)) + 'A')
               << ", " << (char)(get(vertex_index, g, target(*ei, g)) + 'A')
               << ") ";
   }
@@ -332,7 +332,7 @@ test_disconnected(Graph*)
 
   circle_graph_layout(g, get(vertex_position, g), 25.0);
 
-  bool ok = kamada_kawai_spring_layout(g, 
+  bool ok = kamada_kawai_spring_layout(g,
                                        get(vertex_position, g),
                                        get(edge_weight, g),
                                        square_topology<>(50.0),
@@ -362,7 +362,7 @@ test_disconnected(Graph*)
 
 int test_main(int, char*[])
 {
-  typedef adjacency_list<listS, listS, undirectedS, 
+  typedef adjacency_list<listS, listS, undirectedS,
                          // Vertex properties
                          property<vertex_index_t, int,
                          property<vertex_position_t, point> >,

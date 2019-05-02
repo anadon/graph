@@ -28,7 +28,7 @@ void usage()
             << "\t<width>\tWidth of the display area (floating point)\n"
             << "\t<Height>\tHeight of the display area (floating point)\n\n"
             << "Options:\n"
-            << "\t--iterations n\tNumber of iterations to execute.\n" 
+            << "\t--iterations n\tNumber of iterations to execute.\n"
             << "\t\t\tThe default value is 100.\n"
             << "Input:\n"
             << "  Input is read from standard input as a list of edges, one per line.\n"
@@ -40,7 +40,7 @@ void usage()
 typedef boost::rectangle_topology<> topology_type;
 typedef topology_type::point_type point_type;
 
-typedef adjacency_list<listS, vecS, undirectedS, 
+typedef adjacency_list<listS, vecS, undirectedS,
                        property<vertex_name_t, std::string> > Graph;
 
 typedef graph_traits<Graph>::vertex_descriptor Vertex;
@@ -60,7 +60,7 @@ class progress_cooling : public linear_cooling<double>
   typedef linear_cooling<double> inherited;
 
  public:
-  explicit progress_cooling(std::size_t iterations) : inherited(iterations) 
+  explicit progress_cooling(std::size_t iterations) : inherited(iterations)
   {
     display.reset(new progress_display(iterations + 1, std::cerr));
   }
@@ -112,10 +112,10 @@ int main(int argc, char* argv[])
   while (std::cin >> source >> target) {
     add_edge(get_vertex(source, g, names), get_vertex(target, g, names), g);
   }
-  
+
   typedef std::vector<point_type> PositionVec;
   PositionVec position_vec(num_vertices(g));
-  typedef iterator_property_map<PositionVec::iterator, 
+  typedef iterator_property_map<PositionVec::iterator,
                                 property_map<Graph, vertex_index_t>::type>
     PositionMap;
   PositionMap position(position_vec.begin(), get(vertex_index, g));

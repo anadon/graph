@@ -12,9 +12,9 @@
 
 /* Output should be:
 The example graph:
-a --> b 
-b --> a c 
-c --> b 
+a --> b
+b --> a c
+c --> b
 
 Vertex a is in component 0 and has root 0
 Vertex b is in component 0 and has root 0
@@ -37,7 +37,7 @@ int main(int, char*[])
   Vertex a = add_vertex(G);
   Vertex b = add_vertex(G);
   Vertex c = add_vertex(G);
-  
+
   add_edge(a, b, G);
   add_edge(b, a, G);
 
@@ -50,27 +50,27 @@ int main(int, char*[])
   print_graph(G, name);
   std::cout << std::endl;
 #endif
-  
+
   std::vector<int> component(num_vertices(G)), discover_time(num_vertices(G));
   std::vector<default_color_type> color(num_vertices(G));
   std::vector<Vertex> root(num_vertices(G));
-  strong_components(G, make_iterator_property_map(component.begin(), get(vertex_index, G)), 
+  strong_components(G, make_iterator_property_map(component.begin(), get(vertex_index, G)),
 		    root_map(make_iterator_property_map(root.begin(), get(vertex_index, G))).
 		    color_map(make_iterator_property_map(color.begin(), get(vertex_index, G))).
 		    discover_time_map(make_iterator_property_map(discover_time.begin(), get(vertex_index, G))));
-  
+
 #if VERBOSE
   for (std::vector<int>::size_type i = 0; i != component.size(); ++i)
     std::cout << "Vertex " << name[i]
-	      << " is in component " << component[i] 
+	      << " is in component " << component[i]
 	      << " and has root " << root[i] << std::endl;
 #endif
-  
+
 #if VERBOSE
   bool test_failed;
 #endif
   int ret = 0;
-  
+
   //////////
 #if VERBOSE
   test_failed = false;
@@ -89,7 +89,7 @@ int main(int, char*[])
   std::cerr << (test_failed ? "   **** Failed." :  "   Passed.") << std::endl;
 #endif
   //////////
-  
+
   //////////
 #if VERBOSE
   test_failed = false;
@@ -108,7 +108,7 @@ int main(int, char*[])
   std::cerr << (test_failed ? "   **** Failed." :  "   Passed.") << std::endl;
 #endif
   //////////
-  
+
   if (ret == 0)
     std::cout << "tests passed" << std::endl;
   return ret;

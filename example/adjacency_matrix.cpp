@@ -19,7 +19,7 @@ int main()
   const char* name = "ABCDEF";
 
   // A directed graph
-  
+
   typedef adjacency_matrix<directedS> Graph;
   Graph g(N);
   add_edge(B, C, g);

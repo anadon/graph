@@ -21,7 +21,7 @@
 
 
 /*
-  Example of using a visitor with the depth first search 
+  Example of using a visitor with the depth first search
     and breadth first search algorithm
 
   Sacramento ---- Reno ---- Salt Lake City
@@ -32,11 +32,11 @@
      |
   Los Angeles ---- Las Vegas ---- Phoenix
      |
-  San Diego  
+  San Diego
 
 
-  The visitor has three main functions: 
-  
+  The visitor has three main functions:
+
   discover_vertex(u,g) is invoked when the algorithm first arrives at the
     vertex u. This will happen in the depth first or breadth first
     order depending on which algorithm you use.
@@ -47,7 +47,7 @@
     visit(u).
 
   finish_vertex(u,g) is called when after all the vertices reachable from vertex
-    u have already been visited.    
+    u have already been visited.
 
  */
 
@@ -89,13 +89,13 @@ struct finish_city : public base_visitor<finish_city>
   string* names;
 };
 
-int main(int, char*[]) 
+int main(int, char*[])
 {
 
   enum { SanJose, SanFran, LA, SanDiego, Fresno, LasVegas, Reno,
          Sacramento, SaltLake, Phoenix, N };
 
-  string names[] = { "San Jose", "San Francisco", "Los Angeles", "San Diego", 
+  string names[] = { "San Jose", "San Francisco", "Los Angeles", "San Diego",
                      "Fresno", "Las Vegas", "Reno", "Sacramento",
                      "Salt Lake City", "Phoenix" };
 
@@ -120,21 +120,21 @@ int main(int, char*[])
 
   cout << "*** Depth First ***" << endl;
   depth_first_search
-    (G, 
+    (G,
      visitor(make_dfs_visitor(boost::make_list(city_arrival(names),
                                                neighbor_cities(names),
                                                finish_city(names)))));
   cout << endl;
 
   /* Get the source vertex */
-  boost::graph_traits<Graph>::vertex_descriptor 
+  boost::graph_traits<Graph>::vertex_descriptor
     s = vertex(SanJose,G);
 
   cout << "*** Breadth First ***" << endl;
   breadth_first_search
-    (G, s, visitor(make_bfs_visitor(boost::make_list(city_arrival(names), 
-                                                     neighbor_cities(names), 
+    (G, s, visitor(make_bfs_visitor(boost::make_list(city_arrival(names),
+                                                     neighbor_cities(names),
                                                      finish_city(names)))));
-  
+
   return 0;
 }

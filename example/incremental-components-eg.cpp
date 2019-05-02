@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 // Copyright 2009 Trustees of Indiana University.
 // Authors: Andrew Lumsdaine, Lie-Quan Lee, Jeremy G. Siek, Michael Hansen
 //
@@ -18,13 +18,13 @@
 
 using namespace boost;
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
   typedef adjacency_list <vecS, vecS, undirectedS> Graph;
   typedef graph_traits<Graph>::vertex_descriptor Vertex;
   //typedef graph_traits<Graph>::edge_descriptor Edge;
   typedef graph_traits<Graph>::vertices_size_type VertexIndex;
- 
+
   // Create a graph
   const int VERTEX_COUNT = 6;
   Graph graph(VERTEX_COUNT);

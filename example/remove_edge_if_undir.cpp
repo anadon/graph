@@ -18,28 +18,28 @@ using namespace boost;
   Sample output:
 
   original graph:
-  0 <--> 3 3 2 
-  1 <--> 3 
-  2 <--> 0 3 
-  3 <--> 0 0 1 2 
-  1(0,3) 2(0,3) 3(1,3) 4(2,0) 5(3,2) 
+  0 <--> 3 3 2
+  1 <--> 3
+  2 <--> 0 3
+  3 <--> 0 0 1 2
+  1(0,3) 2(0,3) 3(1,3) 4(2,0) 5(3,2)
 
   removing edges connecting 0 and 3
-  0 <--> 2 
-  1 <--> 3 
-  2 <--> 0 3 
-  3 <--> 1 2 
-  3(1,3) 4(2,0) 5(3,2) 
+  0 <--> 2
+  1 <--> 3
+  2 <--> 0 3
+  3 <--> 1 2
+  3(1,3) 4(2,0) 5(3,2)
   removing edges with weight greater than 3
-  0 <--> 
-  1 <--> 3 
-  2 <--> 
-  3 <--> 1 
-  3(1,3) 
-  
+  0 <-->
+  1 <--> 3
+  2 <-->
+  3 <--> 1
+  3(1,3)
+
  */
 
-typedef adjacency_list<vecS, vecS, undirectedS, 
+typedef adjacency_list<vecS, vecS, undirectedS,
   no_property, property<edge_weight_t, int> > Graph;
 
 struct has_weight_greater_than {
@@ -73,7 +73,7 @@ main()
 #else
   Graph g(edge_array, edge_array + 5, 4);
 #endif
-  property_map<Graph, edge_weight_t>::type 
+  property_map<Graph, edge_weight_t>::type
     weight = get(edge_weight, g);
 
   int w = 0;

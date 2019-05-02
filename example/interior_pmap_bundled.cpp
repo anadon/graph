@@ -49,7 +49,7 @@ template <class EdgeIter, class Graph>
 void who_owes_who(EdgeIter first, EdgeIter last, const Graph& G)
 {
   while (first != last) {
-    cout << G[source(*first, G)].first_name << " owes " 
+    cout << G[source(*first, G)].first_name << " owes "
          << G[target(*first, G)].first_name << " some money" << endl;
     ++first;
   }
@@ -67,12 +67,12 @@ main()
     // Create the graph, and specify that we will use std::string to
     // store the first name's.
     typedef adjacency_list<vecS, vecS, directedS, VertexData> MyGraphType;
-    
+
     typedef pair<int,int> Pair;
-    Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4), 
-                            Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1), 
+    Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4),
+                            Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1),
                             Pair(3,4), Pair(4,0), Pair(4,1) };
-    
+
     MyGraphType G(5);
     for (int i=0; i<11; ++i)
       add_edge(edge_array[i].first, edge_array[i].second, G);
@@ -82,7 +82,7 @@ main()
     G[2].first_name = "Andrew";
     G[3].first_name = "Jeff";
     G[4].first_name = "Doug";
-    
+
     who_owes_who(edges(G).first, edges(G).second, G);
   }
 

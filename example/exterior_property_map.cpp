@@ -59,7 +59,7 @@ void who_owes_who(EdgeIter first, EdgeIter last, const Graph& G,
 {
   while (first != last) {
 
-    cout << name[source(*first,G)] << " owes " 
+    cout << name[source(*first,G)] << " owes "
          << name[target(*first,G)] << " some money" << endl;
     ++first;
   }
@@ -68,7 +68,7 @@ void who_owes_who(EdgeIter first, EdgeIter last, const Graph& G,
 int
 main(int, char*[])
 {
-  /* The property will be "names" attached to the vertices */ 
+  /* The property will be "names" attached to the vertices */
 
   string* names = new string[5];
   names[0] = "Jeremy";
@@ -76,12 +76,12 @@ main(int, char*[])
   names[2] = "Andrew";
   names[3] = "Jeff";
   names[4] = "Kinis";
-  
+
   typedef adjacency_list<> MyGraphType;
 
   typedef pair<int,int> Pair;
-  Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4), 
-                          Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1), 
+  Pair edge_array[11] = { Pair(0,1), Pair(0,2), Pair(0,3), Pair(0,4),
+                          Pair(2,0), Pair(3,0), Pair(2,4), Pair(3,1),
                           Pair(3,4), Pair(4,0), Pair(4,1) };
 
     MyGraphType G(5);

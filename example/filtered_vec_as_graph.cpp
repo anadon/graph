@@ -7,15 +7,15 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //=======================================================================
 
-/* 
+/*
    Sample output:
 
    filtered out-edges:
-   A --> 
-   B --> 
-   C --> E 
-   D --> E 
-   E --> 
+   A -->
+   B -->
+   C --> E
+   D --> E
+   E -->
  */
 
 #include <boost/config.hpp>
@@ -37,7 +37,7 @@ struct constant_target {
 int main()
 {
   using namespace boost;
-  
+
   enum { A, B, C, D, E, N };
   const char* name = "ABCDE";
   typedef std::vector < std::list < int > > Graph;
@@ -54,6 +54,6 @@ int main()
 
   std::cout << "filtered out-edges:" << std::endl;
   print_graph(fg, name);
-  
+
   return 0;
 }

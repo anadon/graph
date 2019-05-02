@@ -35,7 +35,7 @@ struct test_callback {
 
    test_callback(Graph& common_subgraph,
                  const Graph& graph1,
-                 const Graph& graph2) :                 
+                 const Graph& graph2) :
     m_graph1(graph1),
     m_graph2(graph2),
     m_common_subgraph(common_subgraph) { }
@@ -60,7 +60,7 @@ struct test_callback {
 
     // Fill membership maps for both graphs
     typedef boost::shared_array_property_map<bool, VertexIndexMap> MembershipMap;
-      
+
     MembershipMap membership_map1(num_vertices(m_graph1),
                                   get(boost::vertex_index, m_graph1));
 
@@ -93,7 +93,7 @@ struct test_callback {
 
     // Verify that subgraph1 matches the supplied common subgraph
     BGL_FORALL_VERTICES_T(vertex1, subgraph1, MembershipFilteredGraph) {
-      
+
       Vertex vertex_common = vertex(get(vindex_map1, vertex1), m_common_subgraph);
 
       // Match vertex names
@@ -118,13 +118,13 @@ struct test_callback {
           return (true);
 
         }
-      }  
-    
+      }
+
     } // BGL_FORALL_VERTICES_T (subgraph1)
 
     // Verify that subgraph2 matches the supplied common subgraph
     BGL_FORALL_VERTICES_T(vertex2, subgraph2, MembershipFilteredGraph) {
-      
+
       Vertex vertex_common = vertex(get(vindex_map2, vertex2), m_common_subgraph);
 
       // Match vertex names
@@ -149,10 +149,10 @@ struct test_callback {
           return (true);
 
         }
-      }  
-    
+      }
+
     } // BGL_FORALL_VERTICES_T (subgraph2)
-    
+
     // Check isomorphism just to be thorough
     if (verify_isomorphism(subgraph1, subgraph2, correspondence_map_1_to_2)) {
 
@@ -171,7 +171,7 @@ struct test_callback {
       return (false);
 
     }
-    
+
     // Keep looking
     return (true);
   }
@@ -278,11 +278,11 @@ int test_main (int argc, char *argv[]) {
   int vertices_to_create = 10;
   int max_edges_per_vertex = 2;
   std::size_t random_seed = time(0);
-  
+
   if (argc > 1) {
     vertices_to_create = boost::lexical_cast<int>(argv[1]);
   }
-  
+
   if (argc > 2) {
     max_edges_per_vertex = boost::lexical_cast<int>(argv[2]);
   }
@@ -290,11 +290,11 @@ int test_main (int argc, char *argv[]) {
   if (argc > 3) {
     output_graphs = boost::lexical_cast<bool>(argv[3]);
   }
-  
+
   if (argc > 4) {
     random_seed = boost::lexical_cast<std::size_t>(argv[4]);
   }
-  
+
   boost::minstd_rand generator(random_seed);
 
   // Using a vecS graph here so that we don't have to mess around with
@@ -326,7 +326,7 @@ int test_main (int argc, char *argv[]) {
   BGL_FORALL_VERTICES(source_vertex, common_subgraph, Graph) {
 
     BGL_FORALL_VERTICES(target_vertex, common_subgraph, Graph) {
-      
+
       if (source_vertex != target_vertex) {
         put(ename_map_common,
             add_edge(source_vertex, target_vertex, common_subgraph).first,
@@ -353,7 +353,7 @@ int test_main (int argc, char *argv[]) {
     std::fstream file_graph1("graph1.dot", std::fstream::out),
       file_graph2("graph2.dot", std::fstream::out),
       file_common_subgraph("expected_common_subgraph.dot", std::fstream::out);
-               
+
     write_graphviz(file_graph1, graph1,
                    make_label_writer(vname_map1),
                    make_label_writer(ename_map1));
@@ -408,7 +408,7 @@ int test_main (int argc, char *argv[]) {
   std::cout << "Searching for unique subgraphs" << std::endl;
   boost::mcgregor_common_subgraphs_unique(graph_simple1, graph_simple2,
     true, user_callback_simple,
-    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
 
   BOOST_CHECK(has_subgraph_string("0,0 1,1 "));
   BOOST_CHECK(has_subgraph_string("0,0 1,1 2,2 "));
@@ -428,7 +428,7 @@ int test_main (int argc, char *argv[]) {
   std::cout << "Searching for maximum subgraphs" << std::endl;
   boost::mcgregor_common_subgraphs_maximum(graph_simple1, graph_simple2,
     true, user_callback_simple,
-    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
 
   BOOST_CHECK(has_subgraph_string("0,0 1,1 2,2 "));
 
@@ -445,7 +445,7 @@ int test_main (int argc, char *argv[]) {
   std::cout << "Searching for maximum unique subgraphs" << std::endl;
   boost::mcgregor_common_subgraphs_maximum_unique(graph_simple1, graph_simple2,
     true, user_callback_simple,
-    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2))); 
+    boost::vertices_equivalent(boost::make_property_map_equivalent(vname_map_simple1, vname_map_simple2)));
 
   BOOST_CHECK(simple_subgraph_list.size() == 1);
   BOOST_CHECK(has_subgraph_string("0,0 1,1 2,2 "));

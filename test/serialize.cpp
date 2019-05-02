@@ -23,7 +23,7 @@ struct vertex_properties {
   template<class Archive>
   void serialize(Archive & ar, const unsigned int /*version*/) {
     ar & BOOST_SERIALIZATION_NVP(name);
-  }  
+  }
 };
 
 struct edge_properties {
@@ -32,18 +32,18 @@ struct edge_properties {
   template<class Archive>
   void serialize(Archive & ar, const unsigned int /*version*/) {
     ar & BOOST_SERIALIZATION_NVP(name);
-  }  
+  }
 };
 
 using namespace boost;
 
-typedef adjacency_list<vecS, vecS, undirectedS, 
+typedef adjacency_list<vecS, vecS, undirectedS,
                vertex_properties, edge_properties> Graph;
 
 typedef graph_traits<Graph>::vertex_descriptor vd_type;
 
 
-typedef adjacency_list<vecS, vecS, undirectedS, 
+typedef adjacency_list<vecS, vecS, undirectedS,
                vertex_properties> Graph_no_edge_property;
 
 int main()

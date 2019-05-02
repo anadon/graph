@@ -151,7 +151,7 @@ bool test_graph(std::istream& dotfile, graph_t& graph,
   typedef istringstream gs_t;
 
   typedef property < vertex_name_t, std::string,
-            property < vertex_color_t, float > > vertex_p;  
+            property < vertex_color_t, float > > vertex_p;
   typedef property < edge_weight_t, double > edge_p;
   typedef property < graph_name_t, std::string > graph_p;
 
@@ -312,8 +312,8 @@ bool test_graph(std::istream& dotfile, graph_t& graph,
   }
 
   // Comments embedded in strings
-  BOOST_AUTO_TEST_CASE (comments_embedded_in_strings) { 
-    gs_t gs( 
+  BOOST_AUTO_TEST_CASE (comments_embedded_in_strings) {
+    gs_t gs(
       "digraph { "
       "a0 [ label = \"//depot/path/to/file_14#4\" ];"
       "a1 [ label = \"//depot/path/to/file_29#9\" ];"

@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -24,7 +24,7 @@ main()
   int weights[] = { 1, 1, 2, 7, 3, 1, 1 };
 #if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
   Graph g(num_nodes);
-  property_map<Graph, edge_weight_t>::type weightmap = get(edge_weight, g); 
+  property_map<Graph, edge_weight_t>::type weightmap = get(edge_weight, g);
   for (std::size_t j = 0; j < sizeof(edges) / sizeof(E); ++j) {
     graph_traits<Graph>::edge_descriptor e; bool inserted;
     boost::tie(e, inserted) = add_edge(edges[j].first, edges[j].second, g);
@@ -40,7 +40,7 @@ main()
   property_map<Graph, vertex_distance_t>::type distance = get(vertex_distance, g);
   property_map<Graph, vertex_index_t>::type indexmap = get(vertex_index, g);
   prim_minimum_spanning_tree
-    (g, *vertices(g).first, &p[0], distance, weightmap, indexmap, 
+    (g, *vertices(g).first, &p[0], distance, weightmap, indexmap,
      default_dijkstra_visitor());
 #else
   prim_minimum_spanning_tree(g, &p[0]);

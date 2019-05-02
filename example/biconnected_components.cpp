@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -57,14 +57,14 @@ main()
   std::cout << "graph A {\n" << "  node[shape=\"circle\"]\n";
 
   for (std::size_t i = 0; i < art_points.size(); ++i) {
-    std::cout << (char)(art_points[i] + 'A') 
-              << " [ style=\"filled\", fillcolor=\"red\" ];" 
+    std::cout << (char)(art_points[i] + 'A')
+              << " [ style=\"filled\", fillcolor=\"red\" ];"
               << std::endl;
   }
 
   graph_traits < graph_t >::edge_iterator ei, ei_end;
   for (boost::tie(ei, ei_end) = edges(g); ei != ei_end; ++ei)
-    std::cout << (char)(source(*ei, g) + 'A') << " -- " 
+    std::cout << (char)(source(*ei, g) + 'A') << " -- "
               << (char)(target(*ei, g) + 'A')
               << "[label=\"" << component[*ei] << "\"]\n";
   std::cout << "}\n";

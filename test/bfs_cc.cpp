@@ -14,13 +14,13 @@
 int main()
 {
   using namespace boost;
-  typedef default_constructible_archetype< 
+  typedef default_constructible_archetype<
     sgi_assignable_archetype<
     equality_comparable_archetype<> > > vertex_t;
   {
-    typedef incidence_graph_archetype<vertex_t, directed_tag, 
+    typedef incidence_graph_archetype<vertex_t, directed_tag,
       allow_parallel_edge_tag> IncidenceGraph;
-    typedef vertex_list_graph_archetype<vertex_t, directed_tag, 
+    typedef vertex_list_graph_archetype<vertex_t, directed_tag,
       allow_parallel_edge_tag, IncidenceGraph> graph_t;
     graph_t& g = static_object<graph_t>::get();
     vertex_t s;
@@ -28,9 +28,9 @@ int main()
     breadth_first_search(g, s, color_map(color));
   }
   {
-    typedef incidence_graph_archetype<vertex_t, directed_tag, 
+    typedef incidence_graph_archetype<vertex_t, directed_tag,
       allow_parallel_edge_tag> IncidenceGraph;
-    typedef vertex_list_graph_archetype<vertex_t, directed_tag, 
+    typedef vertex_list_graph_archetype<vertex_t, directed_tag,
       allow_parallel_edge_tag, IncidenceGraph> graph_t;
     graph_t& g = static_object<graph_t>::get();
     vertex_t s;
@@ -38,11 +38,11 @@ int main()
     breadth_first_search(g, s, vertex_index_map(v_index));
   }
   {
-    typedef incidence_graph_archetype<vertex_t, undirected_tag, 
+    typedef incidence_graph_archetype<vertex_t, undirected_tag,
       allow_parallel_edge_tag> IncidenceGraph;
-    typedef vertex_list_graph_archetype<vertex_t, undirected_tag, 
+    typedef vertex_list_graph_archetype<vertex_t, undirected_tag,
       allow_parallel_edge_tag, IncidenceGraph> Graph;
-    typedef property_graph_archetype<Graph, vertex_index_t, std::size_t> 
+    typedef property_graph_archetype<Graph, vertex_index_t, std::size_t>
       graph_t;
     graph_t& g = static_object<graph_t>::get();
     vertex_t s;

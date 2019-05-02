@@ -40,7 +40,7 @@ main(int , char* [])
   /* Topological sort will need to color the graph.  Here we use an
      internal decorator, so we "property" the color to the graph.
      */
-  typedef adjacency_list<vecS, vecS, directedS, 
+  typedef adjacency_list<vecS, vecS, directedS,
     property<vertex_color_t, default_color_type> > Graph;
 
   typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
@@ -64,11 +64,11 @@ main(int , char* [])
   topological_sort(G, std::back_inserter(c));
 
   std::cout << "A topological ordering: ";
-  for (container::reverse_iterator ii = c.rbegin(); 
+  for (container::reverse_iterator ii = c.rbegin();
        ii != c.rend(); ++ii)
     std::cout << id[*ii] << " ";
   std::cout << std::endl;
 
   return 0;
-} 
+}
 

@@ -14,7 +14,7 @@ using namespace boost;
 int main() {
 
   typedef adjacency_list<setS, vecS, bidirectionalS> graph_type;
-  
+
   // Build graph1
   int num_vertices1 = 8; graph_type graph1(num_vertices1);
   add_edge(0, 6, graph1); add_edge(0, 7, graph1);

@@ -386,13 +386,13 @@ add_vertex(typename subgraph<G>::vertex_descriptor u_global,
       typename subgraph<G>::vertex_descriptor v_global;
       typename subgraph<G>::edge_descriptor e_global;
       // call recursion for parent subgraph
-      if (!g.parent().is_root()) 
+      if (!g.parent().is_root())
          add_vertex(u_global, g.parent());
-            
+
       u_local = add_vertex(g.m_graph);
       g.m_global_vertex.push_back(u_global);
       g.m_local_vertex[u_global] = u_local;
-            
+
       subgraph<G>& r = g.root();
 
       // remember edge global and local maps

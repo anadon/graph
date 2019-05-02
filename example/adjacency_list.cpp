@@ -20,20 +20,20 @@
   Sample Output
 
   graph name: foo
-  0  --joe--> 1  
-  1  --joe--> 0   --curly--> 2   --dick--> 3  
-  2  --curly--> 1   --tom--> 4  
-  3  --dick--> 1   --harry--> 4  
-  4  --tom--> 2   --harry--> 3  
-  (0,1) (1,2) (1,3) (2,4) (3,4) 
+  0  --joe--> 1
+  1  --joe--> 0   --curly--> 2   --dick--> 3
+  2  --curly--> 1   --tom--> 4
+  3  --dick--> 1   --harry--> 4
+  4  --tom--> 2   --harry--> 3
+  (0,1) (1,2) (1,3) (2,4) (3,4)
 
-  removing edge (1,3): 
-  0  --joe--> 1  
-  1  --joe--> 0   --curly--> 2  
-  2  --curly--> 1   --tom--> 4  
-  3  --harry--> 4  
-  4  --tom--> 2   --harry--> 3  
-  (0,1) (1,2) (2,4) (3,4) 
+  removing edge (1,3):
+  0  --joe--> 1
+  1  --joe--> 0   --curly--> 2
+  2  --curly--> 1   --tom--> 4
+  3  --harry--> 4
+  4  --tom--> 2   --harry--> 3
+  (0,1) (1,2) (2,4) (3,4)
 
  */
 
@@ -53,15 +53,15 @@ int main(int , char* [])
   using namespace boost;
   using namespace std;
 
-  typedef adjacency_list<vecS, listS, undirectedS, 
+  typedef adjacency_list<vecS, listS, undirectedS,
     VertexProperties, EdgeProperties> Graph;
 
   const int V = 5;
   Graph g(V);
 
-  property_map<Graph, std::size_t VertexProperties::*>::type 
+  property_map<Graph, std::size_t VertexProperties::*>::type
     id = get(&VertexProperties::index, g);
-  property_map<Graph, std::string EdgeProperties::*>::type 
+  property_map<Graph, std::string EdgeProperties::*>::type
     name = get(&EdgeProperties::name, g);
 
   boost::graph_traits<Graph>::vertex_iterator vi, viend;
@@ -86,11 +86,11 @@ int main(int , char* [])
   }
   print_edges(g, id);
 
-  cout << endl << "removing edge (1,3): " << endl;  
+  cout << endl << "removing edge (1,3): " << endl;
   remove_edge(vertex(1, g), vertex(3, g), g);
 
   ei = out_edges(vertex(1, g), g).first;
-  cout << "removing edge (" << id[source(*ei, g)] 
+  cout << "removing edge (" << id[source(*ei, g)]
        << "," << id[target(*ei, g)] << ")" << endl;
   remove_edge(ei, g);
 

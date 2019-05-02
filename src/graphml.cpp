@@ -26,7 +26,7 @@ namespace {
 class graphml_reader
 {
 public:
-    graphml_reader(mutate_graph& g) 
+    graphml_reader(mutate_graph& g)
         : m_g(g) { }
 
     static boost::property_tree::ptree::path_type path(const std::string& str) {
@@ -47,14 +47,14 @@ public:
             {
               is_first = false;
               BOOST_FOREACH(const ptree::value_type& attr, n.second) {
-                if (attr.first != "data") 
+                if (attr.first != "data")
                   continue;
                 std::string key = attr.second.get<std::string>(path("<xmlattr>/key"));
                 std::string value = attr.second.get_value("");
                 handle_graph_property(key, value);
               }
             }
-            
+
             get_graphs(n.second, (size_t)(-1), false, result);
             if (desired_idx != (size_t)(-1)) break;
           }
@@ -62,7 +62,7 @@ public:
         }
       }
     }
-    
+
     void run(std::istream& in, size_t desired_idx)
     {
       using boost::property_tree::ptree;
@@ -140,18 +140,18 @@ public:
 
 private:
     /// The kinds of keys. Not all of these are supported
-    enum key_kind { 
-        graph_key, 
-        node_key, 
+    enum key_kind {
+        graph_key,
+        node_key,
         edge_key,
         hyperedge_key,
         port_key,
-        endpoint_key, 
+        endpoint_key,
         all_key,
         graphml_key
     };
 
-    void 
+    void
     handle_vertex(const std::string& v)
     {
         bool is_new = false;
@@ -179,7 +179,7 @@ private:
       return m_vertex[v];
     }
 
-    void 
+    void
     handle_edge(const std::string& u, const std::string& v)
     {
         handle_vertex(u);
@@ -198,7 +198,7 @@ private:
 
         size_t e = m_edge.size();
         m_edge.push_back(edge);
-        
+
         std::map<std::string, std::string>::iterator iter;
         for (iter = m_key_default.begin(); iter != m_key_default.end(); ++iter)
         {
@@ -207,7 +207,7 @@ private:
         }
     }
 
-    void 
+    void
     handle_graph()
     {
       std::map<std::string, std::string>::iterator iter;
@@ -248,7 +248,7 @@ namespace boost
 {
 void BOOST_GRAPH_DECL
 read_graphml(std::istream& in, mutate_graph& g, size_t desired_idx)
-{    
+{
     graphml_reader reader(g);
     reader.run(in, desired_idx);
 }

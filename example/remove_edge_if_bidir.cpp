@@ -16,31 +16,31 @@
   Sample output:
 
   original graph:
-  0 --> 3 2 3 
-  1 --> 3 
-  2 --> 0 
-  3 --> 2 
-  1(0,3) 2(0,2) 3(0,3) 4(1,3) 5(2,0) 6(3,2) 
+  0 --> 3 2 3
+  1 --> 3
+  2 --> 0
+  3 --> 2
+  1(0,3) 2(0,2) 3(0,3) 4(1,3) 5(2,0) 6(3,2)
 
   removing edges connecting 0 to 3
-  0 --> 2 
-  1 --> 3 
-  2 --> 0 
-  3 --> 2 
-  2(0,2) 4(1,3) 5(2,0) 6(3,2) 
+  0 --> 2
+  1 --> 3
+  2 --> 0
+  3 --> 2
+  2(0,2) 4(1,3) 5(2,0) 6(3,2)
   removing edges with weight greater than 3
-  0 --> 2 
-  1 --> 
-  2 --> 
-  3 --> 
-  2(0,2) 
+  0 --> 2
+  1 -->
+  2 -->
+  3 -->
+  2(0,2)
 
 
  */
 
 using namespace boost;
 
-typedef adjacency_list<vecS, vecS, bidirectionalS, 
+typedef adjacency_list<vecS, vecS, bidirectionalS,
   no_property, property<edge_weight_t, int> > Graph;
 
 struct has_weight_greater_than {
@@ -74,7 +74,7 @@ main()
 #else
   Graph g(edge_array, edge_array + 6, 4);
 #endif
-  property_map<Graph, edge_weight_t>::type 
+  property_map<Graph, edge_weight_t>::type
     weight = get(edge_weight, g);
 
   int w = 0;

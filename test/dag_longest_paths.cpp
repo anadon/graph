@@ -27,7 +27,7 @@ int test_main(int, char*[])
     (void)add_vertex(graph);
 
     Graph::edge_descriptor e;
-    
+
     e = add_edge(0, 1, graph).first;
     put(edge_weight, graph, e, 1);
 

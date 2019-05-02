@@ -1,5 +1,5 @@
 //=======================================================================
-// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee, 
+// Copyright 2001 Jeremy G. Siek, Andrew Lumsdaine, Lie-Quan Lee,
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -28,7 +28,7 @@
 
 using namespace boost;
 
-template < typename OutputIterator > 
+template < typename OutputIterator >
 class back_edge_recorder : public default_dfs_visitor
 {
 public:
@@ -52,8 +52,8 @@ make_back_edge_recorder(OutputIterator out)
 }
 
 template < typename Graph, typename Loops > void
-find_loops(typename graph_traits < Graph >::vertex_descriptor entry, 
-           const Graph & g, 
+find_loops(typename graph_traits < Graph >::vertex_descriptor entry,
+           const Graph & g,
            Loops & loops)    // A container of sets of vertices
 {
   BOOST_CONCEPT_ASSERT(( BidirectionalGraphConcept<Graph> ));

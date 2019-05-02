@@ -18,15 +18,15 @@ int main(int,char*[])
   typedef default_constructible_archetype<
     sgi_assignable_archetype< equality_comparable_archetype<> > > Vertex;
 
-  typedef incidence_graph_archetype<Vertex, directed_tag, 
+  typedef incidence_graph_archetype<Vertex, directed_tag,
     allow_parallel_edge_tag> Graph1;
   BOOST_CONCEPT_ASSERT(( IncidenceGraphConcept<Graph1> ));
 
-  typedef adjacency_graph_archetype<Vertex, directed_tag, 
+  typedef adjacency_graph_archetype<Vertex, directed_tag,
     allow_parallel_edge_tag> Graph2;
   BOOST_CONCEPT_ASSERT(( AdjacencyGraphConcept<Graph2> ));
 
-  typedef vertex_list_graph_archetype<Vertex, directed_tag, 
+  typedef vertex_list_graph_archetype<Vertex, directed_tag,
     allow_parallel_edge_tag> Graph3;
   BOOST_CONCEPT_ASSERT(( VertexListGraphConcept<Graph3> ));
 

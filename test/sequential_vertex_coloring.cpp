@@ -21,15 +21,15 @@ int test_main(int, char*[])
 
   typedef std::pair<int, int> Edge;
   enum nodes {A, B, C, D, E, n};
-  Edge edge_array[] = { Edge(A, C), Edge(B, B), Edge(B, D), Edge(B, E), 
-                        Edge(C, B), Edge(C, D), Edge(D, E), Edge(E, A), 
+  Edge edge_array[] = { Edge(A, C), Edge(B, B), Edge(B, D), Edge(B, E),
+                        Edge(C, B), Edge(C, D), Edge(D, E), Edge(E, A),
                         Edge(E, B) };
   int m = sizeof(edge_array) / sizeof(Edge);
   Graph g(edge_array, edge_array + m, n);
 
   // Test with the normal order
   std::vector<vertices_size_type> color_vec(num_vertices(g));
-  iterator_property_map<vertices_size_type*, vertex_index_map, 
+  iterator_property_map<vertices_size_type*, vertex_index_map,
                         vertices_size_type, vertices_size_type&>
     color(&color_vec.front(), get(vertex_index, g));
   vertices_size_type num_colors = sequential_vertex_coloring(g, color);

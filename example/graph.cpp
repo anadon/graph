@@ -23,7 +23,7 @@ typedef property<vertex_color_t, default_color_type,
         property<vertex_in_degree_t, int,
           property<vertex_out_degree_t,int> > > > > VertexProperty;
 typedef property<edge_weight_t,int> EdgeProperty;
-typedef adjacency_list<vecS, vecS, bidirectionalS, 
+typedef adjacency_list<vecS, vecS, bidirectionalS,
                        VertexProperty, EdgeProperty> Graph;
 
 template <class Graph>
@@ -39,7 +39,7 @@ void print(Graph& g) {
 }
 
 std::size_t myrand(std::size_t N) {
-  std::size_t ret = rand() % N; 
+  std::size_t ret = rand() % N;
   //  cout << "N = " << N << "  rand = " << ret << endl;
   return ret;
 }
@@ -73,14 +73,14 @@ int main(int, char*[])
     add_edge(a, b, g);
     is_failed =  is_failed || (! check_edge(g, a, b) );
   }
-  
+
   if ( is_failed )
     cerr << "    Failed."<< endl;
   else
     cerr << "           Passed."<< endl;
-  
+
   print(g);
-  
+
   //remove_edge
   for (i = 0; i<2; ++i) {
     std::size_t a = myrand(N), b = myrand(N);
@@ -95,19 +95,19 @@ int main(int, char*[])
     cerr << "           Passed."<< endl;
 
   print(g);
-  
+
   //add_vertex
   is_failed = false;
   std::size_t old_N = N;
   std::size_t vid   = add_vertex(g);
   std::size_t vidp1 = add_vertex(g);
-  
+
   N = num_vertices(g);
   if ( (N - 2) != old_N )
     cerr << "    Failed."<< endl;
   else
-    cerr << "           Passed."<< endl;      
-  
+    cerr << "           Passed."<< endl;
+
   is_failed = false;
   for (i=0; i<2; ++i) {
     std::size_t a = myrand(N), b = myrand(N);
@@ -125,7 +125,7 @@ int main(int, char*[])
   else
     cerr << "           Passed."<< endl;
   print(g);
-  
+
   // clear_vertex
   std::size_t c = myrand(N);
   is_failed = false;
@@ -136,19 +136,19 @@ int main(int, char*[])
 
   cout << "Removing vertex " << c << endl;
   remove_vertex(c, g);
-  
+
   old_N = N;
   N = num_vertices(g);
-  
+
   if ( (N + 1) != old_N )
     is_failed = true;
-  
+
   if ( is_failed )
     cerr << "    Failed."<< endl;
   else
-    cerr << "           Passed."<< endl;      
-  
+    cerr << "           Passed."<< endl;
+
   print(g);
-  
+
   return 0;
 }

@@ -1,13 +1,13 @@
 //=======================================================================
 //
-//  Copyright (c) 2003 Institute of Transport, 
-//                     Railway Construction and Operation, 
+//  Copyright (c) 2003 Institute of Transport,
+//                     Railway Construction and Operation,
 //                     University of Hanover, Germany
 //
 //  Author: Juergen Hunold
 //
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 //=======================================================================
@@ -135,6 +135,6 @@ int main(int, char* [])
   }
   cout << endl;
 
-  
+
   return ret;
 }
