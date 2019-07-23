@@ -9,6 +9,53 @@
 
 import modules ;
 import path ;
+import testing ;
+
+local COPTS =
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Wredundant-decls
+    -Wcast-align
+    -Wmissing-declarations
+    -Wmissing-include-dirs
+    -Wswitch-enum
+    -Wswitch-default
+    -Werror
+    -Winvalid-pch
+    -Wredundant-decls
+    -Wformat=2
+    -Wmissing-format-attribute
+    -Wformat-nonliteral
+    -Wodr
+#    -fsanitize=address
+#    -fsanitize=pointer-compare
+#    -fsanitize=leak
+    -fsanitize=undefined
+    -fsanitize-address-use-after-scope
+#    -fsanitize-coverage=trace-pc
+#    -fsanitize-coverage=trace-cmp
+#    -fcf-protection=full
+    -fstack-protector-all
+    -fstack-check
+#    -fvtable-verify=std
+    -fvtv-debug
+#    -lasan
+    -lubsan
+#    -llsan
+    -Wno-unused-parameter
+    -Wno-missing-declarations
+    -Wno-sign-compare
+    -fPIC
+    ;
+
+local LOPTS =
+#    -lasan
+    -lubsan
+#    -llsan
+    -fPIC
+    ;
+
 
 path-constant TEST_DIR : . ;
 
@@ -18,6 +65,9 @@ path-constant CYCLE_RATIO_INPUT_FILE : ./cycle_ratio_s382.90.dot ;
 
 path-constant METIS_INPUT_FILE : ./weighted_graph.gr ;
 
+project : requirements <toolset>gcc:<cxxflags>$(COPTS) <toolset>clang:<cxxflags>$(COPTS) <toolset>gcc:<linkflags>$(LOPTS) <toolset>clang:<linkflags>$(LOPTS) ;
+
+
 alias graph_test_regular :
     # test_graphs will eventually defined a framework for testing the structure
     # and implementation of graph data structures and adaptors.
@@ -26,7 +76,7 @@ alias graph_test_regular :
     [ run labeled_graph.cpp ]
     [ run finish_edge_bug.cpp ]
 
-    [ run transitive_closure_test.cpp ]
+    [ run transitive_closure_test.cpp /boost/timer//boost_timer ]
     [ run transitive_closure_test2.cpp ]
     [ compile adj_list_cc.cpp ]
 
@@ -34,7 +84,7 @@ alias graph_test_regular :
     [ run adj_list_edge_list_set.cpp ]
     [ run adj_list_loops.cpp ]
     [ compile adj_matrix_cc.cpp ]
-    [ run bfs.cpp ../../test/build//boost_test_exec_monitor ]
+    [ run bfs.cpp ]
     [ compile bfs_cc.cpp ]
     [ run bellman-test.cpp ]
     [ run betweenness_centrality_test.cpp : 100 ]
@@ -42,11 +92,11 @@ alias graph_test_regular :
     [ run bipartite_test.cpp ]
     [ run csr_graph_test.cpp : : : : : <variant>release ]
     [ run dag_longest_paths.cpp ]
-    [ run dfs.cpp ../../test/build//boost_test_exec_monitor ]
-    [ run undirected_dfs.cpp ../../test/build//boost_test_exec_monitor ]
+    [ run dfs.cpp ]
+    [ run undirected_dfs.cpp ]
     [ compile dfs_cc.cpp ]
     [ compile dijkstra_cc.cpp ]
-    [ run dijkstra_heap_performance.cpp : 10000 ]
+    [ run dijkstra_heap_performance.cpp /boost/timer//boost_timer : 10000 ]
     [ run dijkstra_no_color_map_compare.cpp : 10000 ]
     [ run disjoint_set_test.cpp ]
     [ run dominator_tree_test.cpp ]
@@ -84,12 +134,12 @@ alias graph_test_regular :
     [ run sequential_vertex_coloring.cpp ]
 
     # TODO: Merge these into a single test framework.
-    [ run subgraph.cpp ../../test/build//boost_test_exec_monitor ]
+    [ run subgraph.cpp ]
     [ run subgraph_bundled.cpp ]
     [ run subgraph_add.cpp ../../test/build//boost_unit_test_framework/<link>static : $(TEST_DIR) ]
     [ run subgraph_props.cpp ]
 
-    [ run isomorphism.cpp ../../test/build//boost_test_exec_monitor ]
+    [ run isomorphism.cpp ]
     [ run adjacency_matrix_test.cpp ]
     [ compile vector_graph_cc.cpp ]
     [ compile copy.cpp ]
@@ -123,7 +173,7 @@ alias graph_test_regular :
     [ run r_c_shortest_paths_test.cpp ]
     [ run rcsp_custom_vertex_id.cpp ]
     [ run is_straight_line_draw_test.cpp ]
-    [ run metric_tsp_approx.cpp : metric_tsp_approx.graph ]
+    [ run metric_tsp_approx.cpp /boost/timer//boost_timer : metric_tsp_approx.graph : : ]
     [ compile dimacs.cpp ]
     [ run bron_kerbosch_all_cliques.cpp ]
     [ run tiernan_all_cycles.cpp ]
