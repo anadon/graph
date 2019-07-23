@@ -6,3 +6,5 @@ kevin-bacon2.dat
 random.dot
 triangular-fr.dot
 triangular-kk.dot
+*.dot
+*.dat
